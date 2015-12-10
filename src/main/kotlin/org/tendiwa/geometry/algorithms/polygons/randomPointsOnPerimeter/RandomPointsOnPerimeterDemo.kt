@@ -34,7 +34,7 @@ fun main(args: Array<String>) {
                 .map { Circle(it, 0.4) }
             val randomPoints = polygon.randomPointsOnPerimeter(
                 gap = gap,
-                variance = 80.0
+                gapVariance = 9.0
             )
                 .map { Circle(it, 0.4) }
             draw(polygon, Color.black)
