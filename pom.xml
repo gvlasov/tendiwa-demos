@@ -5,8 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.tendiwa</groupId>
-        <relativePath>../plane-geometry-algorithms/pom.xml</relativePath>
-        <artifactId>plane-geometry-algorithms</artifactId>
+        <artifactId>parent</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <artifactId>demos</artifactId>
