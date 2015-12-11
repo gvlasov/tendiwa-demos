@@ -4,7 +4,7 @@ import org.tendiwa.canvas.algorithms.geometry.drawArrow
 import org.tendiwa.canvas.algorithms.geometry.drawBillboard
 import org.tendiwa.derasterization.point
 import org.tendiwa.geometry.circles.Circle
-import org.tendiwa.geometry.constructors.spanHorizontalSegment
+import org.tendiwa.geometry.points.spanHorizontalSegment
 import org.tendiwa.geometry.points.Point
 import org.tendiwa.geometry.segments.Segment
 import org.tendiwa.grid.rectangles.GridRectangle
