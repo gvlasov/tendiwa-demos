@@ -3,13 +3,13 @@ package org.tendiwa.canvas.awt
 import org.tendiwa.canvas.algorithms.geometry.drawArrow
 import org.tendiwa.canvas.algorithms.geometry.drawBillboard
 import org.tendiwa.derasterization.point
-import org.tendiwa.geometry.circles.Circle
-import org.tendiwa.geometry.points.spanHorizontalSegment
-import org.tendiwa.geometry.points.Point
-import org.tendiwa.geometry.segments.Segment
-import org.tendiwa.grid.rectangles.GridRectangle
-import org.tendiwa.grid.rectangles.corner
 import org.tendiwa.plane.directions.OrdinalDirection
+import org.tendiwa.plane.geometry.circles.Circle
+import org.tendiwa.plane.geometry.points.Point
+import org.tendiwa.plane.geometry.points.spanHorizontalSegment
+import org.tendiwa.plane.geometry.segments.Segment
+import org.tendiwa.plane.grid.rectangles.GridRectangle
+import org.tendiwa.plane.grid.rectangles.corner
 import java.awt.Color
 
 fun main(args: Array<String>) {

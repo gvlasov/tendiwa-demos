@@ -1,13 +1,16 @@
-package org.tendiwa.geometry.algorithms.polygons.randomPointsOnPerimeter
+package org.tendiwa.plane.geometry.algorithms.polygons
 
 import org.tendiwa.canvas.algorithms.geometry.draw
 import org.tendiwa.canvas.awt.AwtCanvas
-import org.tendiwa.geometry.circles.Circle
-import org.tendiwa.geometry.points.Point
-import org.tendiwa.geometry.polygons.perimeter
-import org.tendiwa.geometry.trails.Polygon
-import org.tendiwa.grid.dimensions.by
 import org.tendiwa.plane.directions.OrdinalDirection.*
+import org.tendiwa.plane.geometry.algorithms.polygons.randomPointsOnPerimeter.RegularPoint1DCirculars
+import org.tendiwa.plane.geometry.algorithms.polygons.randomPointsOnPerimeter.pointsOnPerimeter
+import org.tendiwa.plane.geometry.algorithms.polygons.randomPointsOnPerimeter.randomPointsOnPerimeter
+import org.tendiwa.plane.geometry.circles.Circle
+import org.tendiwa.plane.geometry.points.Point
+import org.tendiwa.plane.geometry.polygons.perimeter
+import org.tendiwa.plane.geometry.trails.Polygon
+import org.tendiwa.plane.grid.dimensions.by
 import java.awt.Color
 
 fun main(args: Array<String>) {
