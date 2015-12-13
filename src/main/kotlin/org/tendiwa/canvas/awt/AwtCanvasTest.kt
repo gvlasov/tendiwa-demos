@@ -2,7 +2,7 @@ package org.tendiwa.canvas.awt
 
 import org.tendiwa.canvas.algorithms.geometry.drawArrow
 import org.tendiwa.canvas.algorithms.geometry.drawBillboard
-import org.tendiwa.derasterization.point
+import org.tendiwa.derasterization.toPoint
 import org.tendiwa.plane.directions.OrdinalDirection
 import org.tendiwa.plane.geometry.circles.Circle
 import org.tendiwa.plane.geometry.points.Point
@@ -37,7 +37,7 @@ private fun AwtCanvas.drawShit() {
     )
     val rec = GridRectangle(300, 100, 50, 50)
     draw(rec, Color.black)
-    drawText("hello", rec.corner(OrdinalDirection.SW).point, Color.white)
+    drawText("hello", rec.corner(OrdinalDirection.SW).toPoint(), Color.white)
     draw(Circle(Point(100.0, 100.0), radius = 5.0), Color.red)
     drawArrow(Segment(Point(80.0, 90.0), Point(144.0, 159.0)), Color.black, 3.0)
 }
