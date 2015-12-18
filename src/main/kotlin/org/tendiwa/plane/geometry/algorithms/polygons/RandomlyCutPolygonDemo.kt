@@ -3,12 +3,10 @@ package org.tendiwa.plane.geometry.algorithms.polygons
 import org.tendiwa.canvas.algorithms.geometry.draw
 import org.tendiwa.canvas.awt.AwtCanvas
 import org.tendiwa.plane.directions.OrdinalDirection.*
-import org.tendiwa.plane.geometry.algorithms.polygons.randomPointsOnPerimeter.RegularPoint1DCirculars
-import org.tendiwa.plane.geometry.algorithms.polygons.randomPointsOnPerimeter.pointsOnPerimeter
-import org.tendiwa.plane.geometry.algorithms.polygons.randomPointsOnPerimeter.randomPointsOnPerimeter
+import org.tendiwa.plane.geometry.algorithms.polygons.randomPointsOnPerimeter.cutRandomly
+import org.tendiwa.plane.geometry.algorithms.polygons.randomPointsOnPerimeter.cuts
 import org.tendiwa.plane.geometry.circles.Circle
 import org.tendiwa.plane.geometry.points.Point
-import org.tendiwa.plane.geometry.polygons.perimeter
 import org.tendiwa.plane.geometry.trails.Polygon
 import org.tendiwa.plane.grid.dimensions.by
 import java.awt.Color
@@ -16,7 +14,6 @@ import java.awt.Color
 fun main(args: Array<String>) {
     AwtCanvas(size = 100 by 100, scale = 8)
         .apply {
-            val gap = 2.0
             val polygon = Polygon(
                 Point(10.0, 10.0),
                 {
@@ -29,19 +26,10 @@ fun main(args: Array<String>) {
                     move(8.0, NW)
                 }
             )
-            val regularPoints = polygon.pointsOnPerimeter(
-                RegularPoint1DCirculars(
-                    (polygon.perimeter / gap).toInt()
-                )
-            )
+            polygon.cutRandomly(4.0, 10.0)
+                .cuts()
                 .map { Circle(it, 0.4) }
-            val randomPoints = polygon.randomPointsOnPerimeter(
-                gap = gap,
-                gapVariance = 9.0
-            )
-                .map { Circle(it, 0.4) }
+                .forEach { draw(it, Color.blue) }
             draw(polygon, Color.black)
-            regularPoints.forEach { draw(it, Color.blue) }
-            randomPoints.forEach { draw(it, Color.red) }
         }
 }
