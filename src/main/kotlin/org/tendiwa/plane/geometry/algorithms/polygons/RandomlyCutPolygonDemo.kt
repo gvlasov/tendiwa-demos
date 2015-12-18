@@ -3,7 +3,7 @@ package org.tendiwa.plane.geometry.algorithms.polygons
 import org.tendiwa.canvas.algorithms.geometry.draw
 import org.tendiwa.canvas.awt.AwtCanvas
 import org.tendiwa.plane.directions.OrdinalDirection.*
-import org.tendiwa.plane.geometry.algorithms.polygons.cut.cutRandomly
+import org.tendiwa.plane.geometry.algorithms.polygons.cut.random.cutRandomly
 import org.tendiwa.plane.geometry.algorithms.polygons.cut.cuts
 import org.tendiwa.plane.geometry.circles.Circle
 import org.tendiwa.plane.geometry.points.Point
