@@ -3,8 +3,7 @@ package org.tendiwa.plane.geometry.algorithms.polygons
 import org.tendiwa.canvas.algorithms.geometry.draw
 import org.tendiwa.canvas.awt.AwtCanvas
 import org.tendiwa.plane.directions.OrdinalDirection.*
-import org.tendiwa.plane.geometry.algorithms.polygons.garlands.random.cutRandomly
-import org.tendiwa.plane.geometry.algorithms.polygons.garlands.cuts
+import org.tendiwa.plane.geometry.algorithms.polygons.cut.random.cutRandomly
 import org.tendiwa.plane.geometry.circles.Circle
 import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.trails.Polygon
@@ -26,8 +25,9 @@ fun main(args: Array<String>) {
                     move(8.0, NW)
                 }
             )
-            polygon.cutRandomly(4.0, 10.0)
-                .cuts()
+            polygon
+                .cutRandomly(gap = 4.0, gapVariance = 10.0)
+                .cuts
                 .map { Circle(it, 0.4) }
                 .forEach { draw(it, Color.blue) }
             draw(polygon, Color.black)
