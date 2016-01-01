@@ -21,7 +21,9 @@ fun main(args: Array<String>) {
             .boundedBy(GridRectangularHull(component1, component2))
             .apply { draw(this, Color.blue) }
             .derasterized
-            .forEach { draw(it, Color.red) }
+            .first()
+            .enclosing
+            .let { draw(it, Color.red) }
     }
 }
 
