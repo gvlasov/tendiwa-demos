@@ -26,7 +26,7 @@ fun main(args: Array<String>) {
                 }
             )
             polygon
-                .cutRandomly(gap = 4.0, gapVariance = 10.0)
+                .cutRandomly(1.0..4.0)
                 .cuts
                 .map { Circle(it, 0.4) }
                 .forEach { draw(it, Color.blue) }
