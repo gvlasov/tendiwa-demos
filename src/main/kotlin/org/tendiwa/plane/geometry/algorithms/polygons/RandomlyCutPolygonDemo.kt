@@ -2,10 +2,13 @@ package org.tendiwa.plane.geometry.algorithms.polygons
 
 import org.tendiwa.canvas.algorithms.geometry.draw
 import org.tendiwa.canvas.awt.AwtCanvas
+import org.tendiwa.math.doubles.sums.toCircularSliders
+import org.tendiwa.math.doubles.sums.RandomSum
 import org.tendiwa.plane.directions.OrdinalDirection.*
-import org.tendiwa.plane.geometry.algorithms.polygons.cut.random.cutRandomly
 import org.tendiwa.plane.geometry.circles.Circle
 import org.tendiwa.plane.geometry.points.Point
+import org.tendiwa.plane.geometry.polygons.cut.cut
+import org.tendiwa.plane.geometry.polygons.perimeter
 import org.tendiwa.plane.geometry.trails.Polygon
 import org.tendiwa.plane.grid.dimensions.by
 import java.awt.Color
@@ -25,8 +28,9 @@ fun main(args: Array<String>) {
                     move(8.0, NW)
                 }
             )
-            polygon
-                .cutRandomly(1.0..4.0)
+            RandomSum(polygon.perimeter, 1.0..4.0)
+                .toCircularSliders()
+                .let { polygon.cut(it) }
                 .cuts
                 .map { Circle(it, 0.4) }
                 .forEach { draw(it, Color.blue) }
