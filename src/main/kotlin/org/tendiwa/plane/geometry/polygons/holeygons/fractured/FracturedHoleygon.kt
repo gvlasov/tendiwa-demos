@@ -5,10 +5,11 @@ import org.tendiwa.canvas.awt.AwtCanvas
 import org.tendiwa.plane.geometry.graphs.fractured.fracture
 import org.tendiwa.plane.geometry.holeygons.Holeygon
 import org.tendiwa.plane.geometry.rectangles.Rectangle
+import org.tendiwa.plane.grid.dimensions.by
 import java.awt.Color
 
 fun main(args: Array<String>) {
-    AwtCanvas()
+    AwtCanvas(scale = 8, size = 120 by 120)
         .apply {
             val fracturedHoleygon =
                 Holeygon(
