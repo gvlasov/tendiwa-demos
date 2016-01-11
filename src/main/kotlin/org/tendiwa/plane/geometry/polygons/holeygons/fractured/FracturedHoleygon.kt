@@ -2,6 +2,7 @@ package org.tendiwa.plane.geometry.polygons.holeygons.fractured
 
 import org.tendiwa.canvas.algorithms.geometry.graphs.draw
 import org.tendiwa.canvas.awt.AwtCanvas
+import org.tendiwa.math.ranges.SizeRange
 import org.tendiwa.plane.geometry.graphs.fractured.SnapRadius
 import org.tendiwa.plane.geometry.graphs.fractured.fracture
 import org.tendiwa.plane.geometry.holeygons.Holeygon
@@ -21,9 +22,8 @@ fun main(args: Array<String>) {
                 )
                     .fracture(
                         roadsFromPoint = 5,
-                        crackSegmentLengths = 10.0..15.0,
+                        crackSegmentLengths = SizeRange(10.0..15.0),
                         snapRadius = SnapRadius(8.0),
-                        maxStartPointsPerCell = 2,
                         crackDeviationAngle = Math.toRadians(20.0),
                         favourAxisAlignedSegments = false
                     )
