@@ -2,8 +2,9 @@ package org.tendiwa.plane.geometry.algorithms.polygons
 
 import org.tendiwa.canvas.algorithms.geometry.draw
 import org.tendiwa.canvas.awt.AwtCanvas
-import org.tendiwa.math.doubles.sums.toCircularSliders
 import org.tendiwa.math.doubles.sums.RandomSum
+import org.tendiwa.math.doubles.sums.toCircularSliders
+import org.tendiwa.math.ranges.SizeRange
 import org.tendiwa.plane.directions.OrdinalDirection.*
 import org.tendiwa.plane.geometry.circles.Circle
 import org.tendiwa.plane.geometry.points.Point
@@ -28,7 +29,7 @@ fun main(args: Array<String>) {
                     move(8.0, NW)
                 }
             )
-            RandomSum(polygon.perimeter, 1.0..4.0)
+            RandomSum(polygon.perimeter, SizeRange(1.0..4.0))
                 .toCircularSliders()
                 .let { polygon.cut(it) }
                 .cuts
