@@ -3,7 +3,7 @@ package org.tendiwa.canvas.awt
 import org.tendiwa.canvas.algorithms.geometry.drawArrow
 import org.tendiwa.canvas.algorithms.geometry.drawBillboard
 import org.tendiwa.derasterization.toPoint
-import org.tendiwa.plane.directions.OrdinalDirection.SW
+import org.tendiwa.plane.directions.OrdinalDirection.*
 import org.tendiwa.plane.geometry.circles.Circle
 import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.points.spanHorizontalSegment
@@ -22,18 +22,19 @@ fun main(args: Array<String>) {
 }
 
 private fun AwtCanvas.drawShit() {
-    draw(GridRectangle(0, 0, 1, 1), Color.blue)
-    draw(Segment(Point(0.0, 0.0), Point(1.0, 1.0)), Color.red)
-    draw(Circle(Point(1.0, 0.0), 0.5), Color.red)
+    draw(GridRectangle(0, 0, 1, 1), Color.green)
+    draw(Segment(Point(0.0, 0.0), Point(1.0, 1.0)), Color.black)
+    draw(Circle(Point(1.0, 0.0), 0.5), Color.lightGray)
     draw(GridRectangle(11, 11, 30, 50), Color.blue)
     draw(10, 10, Color.red)
     draw(20, 10, Color.red)
     draw(Point(10.0, 15.0).spanHorizontalSegment(100.0), Color.black)
     draw(GridRectangle(40, 100, 30, 50), Color.blue)
     drawBillboard(
-        Point(77.0, 53.0),
+        Point(70.0, 50.0),
         "byoggibidTl",
-        Color.yellow
+        Color.black,
+        Color.red
     )
     val rec = GridRectangle(300, 100, 50, 50)
     draw(rec, Color.black)
