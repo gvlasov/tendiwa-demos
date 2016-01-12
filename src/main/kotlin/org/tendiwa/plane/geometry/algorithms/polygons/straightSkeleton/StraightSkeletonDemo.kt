@@ -3,7 +3,7 @@ package org.tendiwa.plane.geometry.algorithms.polygons.straightSkeleton
 import org.tendiwa.canvas.algorithms.geometry.draw
 import org.tendiwa.canvas.awt.AwtCanvas
 import org.tendiwa.plane.directions.CardinalDirection.*
-import org.tendiwa.plane.directions.OrdinalDirection.NE
+import org.tendiwa.plane.directions.OrdinalDirection.*
 import org.tendiwa.plane.geometry.algorithms.polygons.shrinking.shrink
 import org.tendiwa.plane.geometry.trails.Trail
 import org.tendiwa.plane.geometry.trails.polygon
@@ -26,10 +26,7 @@ fun main(args: Array<String>) {
             }
                 .polygon
         draw(polygon, Color.black)
-
-        val shrink = polygon.shrink(8.0)
-        println(shrink)
-        shrink.forEach {
+        polygon.shrink(8.0).forEach {
             draw(it, Color.red)
         }
     }
