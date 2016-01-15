@@ -2,7 +2,7 @@ package org.tendiwa.plane.geometry.polygons.holeygons.fractured
 
 import org.tendiwa.canvas.algorithms.geometry.graphs.draw
 import org.tendiwa.canvas.awt.AwtCanvas
-import org.tendiwa.math.angles.Angle
+import org.tendiwa.math.angles.AngularMeasure
 import org.tendiwa.math.ranges.SizeRange
 import org.tendiwa.plane.directions.CardinalDirection.*
 import org.tendiwa.plane.directions.OrdinalDirection.*
@@ -44,7 +44,7 @@ fun main(args: Array<String>) {
                         roadsFromPoint = 4,
                         crackSegmentLengths = SizeRange(10.0..15.0),
                         snapRadius = SnapRadius(8.0),
-                        crackDeviation = Angle(Math.toRadians(20.0)),
+                        crackDeviation = AngularMeasure(Math.toRadians(20.0)),
                         favourAxisAlignedSegments = false
                     )
             draw(fracturedHoleygon, Color.red)
