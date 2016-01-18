@@ -20,8 +20,27 @@ import java.awt.Color
 import java.util.*
 
 fun main(args: Array<String>) {
-    val polygon = Polygon(
-        Point(10.0, 10.0),
+    AwtCanvas(size = 256 by 295, scale = 3)
+        .apply {
+            for ((colorIndex, streetGroup) in coloring(streetNetwork())) {
+                streetGroup.forEach {
+                    draw(it, colors[colorIndex])
+                }
+            }
+        }
+}
+
+private fun streetNetwork(): List<SegmentPath> =
+    holeygon()
+        .fracture(
+            roadsFromPoint = 4,
+            favourAxisAlignedSegments = true
+        )
+        .toSegmentGroup()
+        .streets()
+
+private fun holeygon(): Holeygon {
+    val polygon = Polygon(Point(10.0, 10.0),
         {
             move(100.0, E)
             move(60.0, NE)
@@ -34,7 +53,6 @@ fun main(args: Array<String>) {
             move(50.0, SW)
         }
     )
-
     val hole1 = Polygon(
         Point(95.0, 220.0),
         {
@@ -54,36 +72,27 @@ fun main(args: Array<String>) {
         enclosing = polygon,
         holes = listOf(hole1, hole2)
     )
-    val colors = listOf(
-        Color.red,
-        Color.green,
-        Color.blue,
-        Color.black,
-        Color.orange,
-        Color.cyan,
-        Color.yellow
-    )
-
-    AwtCanvas(size = 256 by 295, scale = 3)
-        .apply {
-            val streets = holeygon
-                .fracture(
-                    roadsFromPoint = 4,
-                    favourAxisAlignedSegments = true
-                )
-                .toSegmentGroup()
-                .streets()
-            val streetColoringGroups = streetIntersectionGraph(streets)
-                .let { ChromaticNumber.findGreedyColoredGroups(it) }
-            for ((colorIndex, streetGroup) in streetColoringGroups) {
-                streetGroup.forEach {
-                    draw(it, colors[colorIndex])
-                }
-            }
-        }
+    return holeygon
 }
 
-fun streetIntersectionGraph(streets: List<SegmentPath>): UndirectedGraph<SegmentPath, DefaultEdge> {
+
+private fun coloring(streets: List<SegmentPath>) =
+    streetIntersectionGraph(streets)
+        .let { ChromaticNumber.findGreedyColoredGroups(it) }
+
+val colors = listOf(
+    Color.red,
+    Color.green,
+    Color.blue,
+    Color.black,
+    Color.orange,
+    Color.cyan,
+    Color.yellow
+)
+
+fun streetIntersectionGraph(
+    streets: List<SegmentPath>
+): UndirectedGraph<SegmentPath, DefaultEdge> {
     val graph = SimpleGraph<SegmentPath, DefaultEdge>(
         { a, b -> DefaultEdge() }
     );
