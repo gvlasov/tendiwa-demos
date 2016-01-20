@@ -10,8 +10,8 @@ import org.tendiwa.plane.geometry.graphs.fractured.SnapRadius
 import org.tendiwa.plane.geometry.graphs.fractured.fracture
 import org.tendiwa.plane.geometry.holeygons.Holeygon
 import org.tendiwa.plane.geometry.points.Point
+import org.tendiwa.plane.geometry.polygons.Polygon
 import org.tendiwa.plane.geometry.rectangles.Rectangle
-import org.tendiwa.plane.geometry.trails.Polygon
 import org.tendiwa.plane.grid.dimensions.by
 import java.awt.Color
 

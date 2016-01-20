@@ -8,9 +8,9 @@ import org.tendiwa.math.ranges.SizeRange
 import org.tendiwa.plane.directions.OrdinalDirection.*
 import org.tendiwa.plane.geometry.circles.Circle
 import org.tendiwa.plane.geometry.points.Point
+import org.tendiwa.plane.geometry.polygons.Polygon
 import org.tendiwa.plane.geometry.polygons.cut.cut
 import org.tendiwa.plane.geometry.polygons.perimeter
-import org.tendiwa.plane.geometry.trails.Polygon
 import org.tendiwa.plane.grid.dimensions.by
 import java.awt.Color
 
