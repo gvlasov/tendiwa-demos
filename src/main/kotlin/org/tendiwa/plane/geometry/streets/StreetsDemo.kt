@@ -1,12 +1,7 @@
 package org.tendiwa.plane.geometry.streets
 
-import org.jgrapht.UndirectedGraph
-import org.jgrapht.alg.ChromaticNumber
-import org.jgrapht.graph.DefaultEdge
-import org.jgrapht.graph.SimpleGraph
 import org.tendiwa.canvas.algorithms.geometry.draw
 import org.tendiwa.canvas.awt.AwtCanvas
-import org.tendiwa.math.sets.allPossiblePairs
 import org.tendiwa.plane.directions.CardinalDirection.*
 import org.tendiwa.plane.directions.OrdinalDirection.*
 import org.tendiwa.plane.geometry.graphs.fractured.fracture
@@ -16,15 +11,13 @@ import org.tendiwa.plane.geometry.paths.SegmentPath
 import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.polygons.Polygon
 import org.tendiwa.plane.grid.dimensions.by
-import java.awt.Color
-import java.util.*
 
 fun main(args: Array<String>) {
     AwtCanvas(size = 256 by 295, scale = 3)
         .apply {
-            for ((colorIndex, streetGroup) in coloring(streetNetwork())) {
+            for ((color, streetGroup) in StreetColoring(streetNetwork())) {
                 streetGroup.forEach {
-                    draw(it, colors[colorIndex])
+                    draw(it, color)
                 }
             }
         }
@@ -73,46 +66,6 @@ private fun holeygon(): Holeygon {
         holes = listOf(hole1, hole2)
     )
     return holeygon
-}
-
-
-private fun coloring(streets: List<SegmentPath>) =
-    streetIntersectionGraph(streets)
-        .let { ChromaticNumber.findGreedyColoredGroups(it) }
-
-val colors = listOf(
-    Color.red,
-    Color.green,
-    Color.blue,
-    Color.black,
-    Color.orange,
-    Color.cyan,
-    Color.yellow
-)
-
-fun streetIntersectionGraph(
-    streets: List<SegmentPath>
-): UndirectedGraph<SegmentPath, DefaultEdge> {
-    val graph = SimpleGraph<SegmentPath, DefaultEdge>(
-        { a, b -> DefaultEdge() }
-    );
-    streets.forEach { graph.addVertex(it) }
-    val map: MutableMap<Point, MutableCollection<SegmentPath>> = HashMap()
-    streets.forEach { street ->
-        street.points.forEach { point ->
-            map
-                .getOrPut(point, { HashSet<SegmentPath>() })
-                .add(street)
-        }
-    }
-    for ((point, intersectedStreets) in map) {
-        intersectedStreets
-            .allPossiblePairs()
-            .forEach {
-                graph.addEdge(it.first, it.second)
-            }
-    }
-    return graph
 }
 
 
