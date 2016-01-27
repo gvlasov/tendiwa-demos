@@ -16,7 +16,7 @@ fun main(args: Array<String>) {
     val path = passableMask.path(
         start = Tile(40, 5),
         end = Tile(50, 90)
-    )
+    )!!
     AwtCanvas(viewport).apply {
         draw(passableMask, Color.green)
         draw(path, Color.red)
