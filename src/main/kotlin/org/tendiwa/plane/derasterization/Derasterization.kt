@@ -1,7 +1,7 @@
 package org.tendiwa.plane.derasterization
 
 import org.tendiwa.canvas.algorithms.geometry.draw
-import org.tendiwa.canvas.algorithms.grid.draw
+import org.tendiwa.canvas.algorithms.grid.drawGridMask
 import org.tendiwa.canvas.awt.AwtCanvas
 import org.tendiwa.derasterization.polygons.derasterized
 import org.tendiwa.plane.grid.constructors.GridRectangle
@@ -19,7 +19,7 @@ fun main(args: Array<String>) {
         component1
             .union(component2)
             .boundedBy(GridRectangularHull(component1, component2))
-            .apply { draw(this, Color.blue) }
+            .apply { drawGridMask(this, Color.blue) }
             .derasterized
             .first()
             .enclosing

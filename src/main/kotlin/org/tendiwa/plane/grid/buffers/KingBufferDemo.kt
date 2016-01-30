@@ -1,6 +1,6 @@
 package org.tendiwa.plane.grid.buffers
 
-import org.tendiwa.canvas.algorithms.grid.draw
+import org.tendiwa.canvas.algorithms.grid.drawGridMask
 import org.tendiwa.canvas.awt.AwtCanvas
 import org.tendiwa.plane.grid.algorithms.buffers.kingBuffer
 import org.tendiwa.plane.grid.constructors.GridRectangle
@@ -22,8 +22,8 @@ fun main(args: Array<String>) {
         .kingBuffer(thickness = 8)
         .boundedBy(viewport)
     AwtCanvas(viewport).apply {
-        draw(mask, Color.green)
-        draw(buffer, Color.red)
+        drawGridMask(mask, Color.green)
+        drawGridMask(buffer, Color.red)
     }
 
 }

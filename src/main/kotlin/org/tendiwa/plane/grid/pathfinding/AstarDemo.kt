@@ -1,6 +1,6 @@
 package org.tendiwa.plane.grid.pathfinding
 
-import org.tendiwa.canvas.algorithms.grid.draw
+import org.tendiwa.canvas.algorithms.grid.drawGridMask
 import org.tendiwa.canvas.awt.AwtCanvas
 import org.tendiwa.plane.grid.algorithms.pathfinding.astar.path
 import org.tendiwa.plane.grid.constructors.GridRectangle
@@ -18,8 +18,8 @@ fun main(args: Array<String>) {
         end = Tile(50, 90)
     )!!
     AwtCanvas(viewport).apply {
-        draw(passableMask, Color.green)
-        draw(path, Color.red)
+        drawGridMask(passableMask, Color.green)
+        drawGridMask(path, Color.red)
     }
 }
 

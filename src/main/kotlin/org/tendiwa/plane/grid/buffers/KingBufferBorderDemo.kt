@@ -1,6 +1,6 @@
 package org.tendiwa.plane.grid.buffers
 
-import org.tendiwa.canvas.algorithms.grid.draw
+import org.tendiwa.canvas.algorithms.grid.drawGridMask
 import org.tendiwa.canvas.awt.AwtCanvas
 import org.tendiwa.math.noise.PerlinNoise
 import org.tendiwa.plane.grid.algorithms.buffers.kingBufferBorder
@@ -26,8 +26,8 @@ fun main(args: Array<String>) {
         )
         .boundedBy(viewport)
     AwtCanvas(viewport, 1).apply {
-        draw(mask, Color.green)
-        draw(mask.inverse.boundedBy(viewport), Color.blue)
-        draw(bufferBorder, Color.red)
+        drawGridMask(mask, Color.green)
+        drawGridMask(mask.inverse.boundedBy(viewport), Color.blue)
+        drawGridMask(bufferBorder, Color.red)
     }
 }
