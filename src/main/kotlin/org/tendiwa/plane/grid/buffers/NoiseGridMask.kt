@@ -1,6 +1,6 @@
 package org.tendiwa.plane.grid.buffers
 
-import org.tendiwa.math.noise.PerlinNoise
+import org.tendiwa.math.noise.Noise2D
 import org.tendiwa.plane.grid.masks.ArrayGridMask
 import org.tendiwa.plane.grid.masks.BoundedGridMask
 import org.tendiwa.plane.grid.masks.GridMask
@@ -8,7 +8,7 @@ import org.tendiwa.plane.grid.masks.boundedBy
 import org.tendiwa.plane.grid.rectangles.GridRectangle
 
 data class NoiseGridMask(
-    val noise: PerlinNoise,
+    val noise: Noise2D,
     val scale: Int,
     override val hull: GridRectangle,
     val limit: Int

@@ -23,5 +23,5 @@ fun main(args: Array<String>) {
     }
 }
 
-fun PerlinNoise.at(tile: Tile, scale: Int): Int =
+fun Noise2D.at(tile: Tile, scale: Int): Int =
     at(tile.x.toDouble() / scale, tile.y.toDouble() / scale)
