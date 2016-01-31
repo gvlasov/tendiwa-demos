@@ -7,7 +7,7 @@ import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.polygons.Polygon
 import org.tendiwa.plane.grid.algorithms.rectangles.maximalRectangle
 import org.tendiwa.plane.grid.dimensions.by
-import org.tendiwa.plane.rasterization.polygon.rasterized
+import org.tendiwa.plane.rasterization.polygon.rasterize
 import org.tendiwa.plane.rasterization.segmentGroups.gridHull
 import java.awt.Color
 
@@ -18,7 +18,7 @@ fun main(args: Array<String>) {
             Point(44.0, 34.0),
             Point(12.0, 88.0)
         )
-            .rasterized
+            .rasterize()
             .apply { drawGridMask(this, Color.red) }
         val smallPolygon = Polygon(
             Point(5.99995030776296, 7.82850703463737),
@@ -26,7 +26,7 @@ fun main(args: Array<String>) {
             Point(7.5504466525217, 9.37897770925053)
         )
         val rasterizedSmallPolygon = smallPolygon
-            .rasterized
+            .rasterize()
 
         draw(smallPolygon.gridHull, Color.pink)
 //        draw(rasterizedSmallPolygon, Color.green)

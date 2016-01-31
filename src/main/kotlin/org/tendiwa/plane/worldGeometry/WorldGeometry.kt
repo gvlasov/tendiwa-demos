@@ -21,7 +21,7 @@ import org.tendiwa.plane.grid.masks.boundedBy
 import org.tendiwa.plane.grid.masks.difference
 import org.tendiwa.plane.grid.masks.inverse
 import org.tendiwa.plane.grid.rectangles.GridRectangle
-import org.tendiwa.plane.rasterization.polygon.rasterized
+import org.tendiwa.plane.rasterization.polygon.rasterize
 
 data class WorldGeometry(val viewport: GridRectangle) {
     val terrain = NoiseGridMask(
@@ -64,6 +64,6 @@ data class WorldGeometry(val viewport: GridRectangle) {
 
     val houses: List<BoundedGridMask> =
         citiesLots
-            .map { it.rasterized.maximalRectangle() }
+            .map { it.rasterize().maximalRectangle() }
             .filterNotNull()
 }
