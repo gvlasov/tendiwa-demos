@@ -9,8 +9,8 @@ import org.tendiwa.plane.geometry.graphs.cycles.minimumCycleBasis.minimumCycleBa
 import org.tendiwa.plane.geometry.graphs.cycles.toPolygon
 import org.tendiwa.plane.geometry.graphs.fractured.fracture
 import org.tendiwa.plane.geometry.orthoFracturedPolygon.orthoFractured
-import org.tendiwa.plane.grid.algorithms.buffers.inwardBuffer
-import org.tendiwa.plane.grid.algorithms.buffers.kingBufferBorder
+import org.tendiwa.plane.grid.algorithms.buffers.deflate
+import org.tendiwa.plane.grid.algorithms.buffers.intrudedContour
 import org.tendiwa.plane.grid.algorithms.distantSeeds.distantSeeds
 import org.tendiwa.plane.grid.algorithms.floods.Flood
 import org.tendiwa.plane.grid.algorithms.rectangles.maximalRectangle
@@ -18,24 +18,25 @@ import org.tendiwa.plane.grid.buffers.NoiseGridMask
 import org.tendiwa.plane.grid.constructors.CenteredGridRectangle
 import org.tendiwa.plane.grid.masks.BoundedGridMask
 import org.tendiwa.plane.grid.masks.boundedBy
-import org.tendiwa.plane.grid.masks.difference
 import org.tendiwa.plane.grid.masks.inverse
 import org.tendiwa.plane.grid.rectangles.GridRectangle
 import org.tendiwa.plane.rasterization.polygon.rasterize
 
 data class WorldGeometry(val viewport: GridRectangle) {
-    val terrain = NoiseGridMask(
-        noise = PerlinNoise(7),
-        scale = 128,
-        hull = viewport,
-        limit = 128
-    )
+    val terrain =
+        NoiseGridMask(
+            noise = PerlinNoise(7),
+            scale = 128,
+            hull = viewport,
+            limit = 128
+        )
 
     val water = terrain.inverse.boundedBy(viewport)
 
-    val cityCentersMask = water
-        .kingBufferBorder(depth = 20, thickness = 1)
-        .boundedBy(viewport)
+    val cityCentersMask =
+        terrain
+            .intrudedContour(depth = 20, thickness = 1)
+            .boundedBy(viewport)
 
     val citiesRoads: List<Graph2D> =
         cityCentersMask
@@ -44,7 +45,7 @@ data class WorldGeometry(val viewport: GridRectangle) {
                 Flood(
                     start = it,
                     tableHull = CenteredGridRectangle(it, 50),
-                    passable = terrain.difference(terrain.inwardBuffer(5))
+                    passable = terrain.deflate(5)
                 )
                     .reachableMask
                     .derasterized
