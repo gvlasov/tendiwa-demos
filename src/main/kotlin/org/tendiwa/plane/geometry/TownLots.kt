@@ -14,7 +14,7 @@ import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.polygons.Polygon
 import org.tendiwa.plane.geometry.streets.StreetColoring
 import org.tendiwa.plane.geometry.streets.drawSegmentGroupColoring
-import org.tendiwa.plane.geometry.streets.streets
+import streets.streets
 import org.tendiwa.plane.grid.dimensions.by
 import java.awt.Color
 
