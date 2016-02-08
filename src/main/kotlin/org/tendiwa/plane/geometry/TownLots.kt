@@ -6,16 +6,16 @@ import org.tendiwa.math.ranges.SizeRange
 import org.tendiwa.plane.geometry.algorithms.polygons.shrinking.shrink
 import org.tendiwa.plane.geometry.graphs.cycles.minimumCycleBasis.minimumCycleBasis
 import org.tendiwa.plane.geometry.graphs.cycles.toPolygon
-import org.tendiwa.plane.geometry.graphs.fractured.fracture
 import org.tendiwa.plane.geometry.graphs.toSegmentGroup
 import org.tendiwa.plane.geometry.holeygons.Holeygon
-import org.tendiwa.plane.geometry.orthoFracturedPolygon.orthoFractured
 import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.polygons.Polygon
 import org.tendiwa.plane.geometry.streets.StreetColoring
 import org.tendiwa.plane.geometry.streets.drawSegmentGroupColoring
-import streets.streets
 import org.tendiwa.plane.grid.dimensions.by
+import org.tendiwa.plane.settlements.quarters.ortho.random.orthoFractured
+import org.tendiwa.plane.settlements.roadNetwork.random.fracture
+import org.tendiwa.plane.settlements.streets.streets
 import java.awt.Color
 
 fun main(args: Array<String>) {

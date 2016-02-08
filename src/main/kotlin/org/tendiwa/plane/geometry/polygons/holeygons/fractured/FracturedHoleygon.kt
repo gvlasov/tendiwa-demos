@@ -6,13 +6,13 @@ import org.tendiwa.math.angles.AngularMeasure
 import org.tendiwa.math.ranges.SizeRange
 import org.tendiwa.plane.directions.CardinalDirection.*
 import org.tendiwa.plane.directions.OrdinalDirection.*
-import org.tendiwa.plane.geometry.graphs.fractured.SnapRadius
-import org.tendiwa.plane.geometry.graphs.fractured.fracture
 import org.tendiwa.plane.geometry.holeygons.Holeygon
 import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.polygons.Polygon
 import org.tendiwa.plane.geometry.rectangles.Rectangle
 import org.tendiwa.plane.grid.dimensions.by
+import org.tendiwa.plane.settlements.roadNetwork.random.SnapRadius
+import org.tendiwa.plane.settlements.roadNetwork.random.fracture
 import java.awt.Color
 
 fun main(args: Array<String>) {

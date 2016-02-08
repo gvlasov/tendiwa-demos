@@ -4,14 +4,14 @@ import org.tendiwa.canvas.algorithms.geometry.draw
 import org.tendiwa.canvas.awt.AwtCanvas
 import org.tendiwa.plane.directions.CardinalDirection.*
 import org.tendiwa.plane.directions.OrdinalDirection.*
-import org.tendiwa.plane.geometry.graphs.fractured.fracture
 import org.tendiwa.plane.geometry.graphs.toSegmentGroup
 import org.tendiwa.plane.geometry.holeygons.Holeygon
 import org.tendiwa.plane.geometry.paths.SegmentPath
 import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.polygons.Polygon
 import org.tendiwa.plane.grid.dimensions.by
-import streets.streets
+import org.tendiwa.plane.settlements.roadNetwork.random.fracture
+import org.tendiwa.plane.settlements.streets.streets
 
 fun main(args: Array<String>) {
     AwtCanvas(size = 256 by 295, scale = 3)
