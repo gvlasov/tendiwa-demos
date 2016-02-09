@@ -14,7 +14,7 @@ import org.tendiwa.plane.geometry.streets.StreetColoring
 import org.tendiwa.plane.geometry.streets.drawSegmentGroupColoring
 import org.tendiwa.plane.grid.dimensions.by
 import org.tendiwa.plane.settlements.quarters.ortho.random.orthoFractured
-import org.tendiwa.plane.settlements.roadNetwork.random.RandomRoadNetworkGeometry
+import org.tendiwa.plane.settlements.roadNetwork.random.RandomCrackedHoleygon
 import org.tendiwa.plane.settlements.streets.streets
 import java.awt.Color
 
@@ -47,7 +47,7 @@ fun main(args: Array<String>) {
         }
     )
     val holeygon = Holeygon(polygon, listOf(hole1))
-    val graph = RandomRoadNetworkGeometry(holeygon).roads
+    val graph = RandomCrackedHoleygon(holeygon).contours
     val cells = graph
         .minimumCycleBasis
         .minimalCycles

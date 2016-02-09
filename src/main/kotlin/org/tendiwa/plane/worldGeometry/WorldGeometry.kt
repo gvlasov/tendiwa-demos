@@ -20,7 +20,7 @@ import org.tendiwa.plane.grid.masks.inverse
 import org.tendiwa.plane.grid.rectangles.GridRectangle
 import org.tendiwa.plane.rasterization.polygon.rasterize
 import org.tendiwa.plane.settlements.quarters.ortho.random.orthoFractured
-import org.tendiwa.plane.settlements.roadNetwork.random.RandomRoadNetworkGeometry
+import org.tendiwa.plane.settlements.roadNetwork.random.RandomCrackedHoleygon
 
 data class WorldGeometry(val viewport: GridRectangle) {
     val terrain =
@@ -51,12 +51,12 @@ data class WorldGeometry(val viewport: GridRectangle) {
                     .derasterized
             }
             .map {
-                RandomRoadNetworkGeometry(
+                RandomCrackedHoleygon(
                     border = it,
                     crackSegmentLengths = SizeRange(20.0..34.0),
                     favourAxisAlignedSegments = true
                 )
-                    .roads
+                    .contours
             }
 
     val citiesLots =
