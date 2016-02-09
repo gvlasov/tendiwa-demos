@@ -1,6 +1,6 @@
 package org.tendiwa.plane.derasterization
 
-import org.tendiwa.canvas.algorithms.geometry.draw
+import org.tendiwa.canvas.algorithms.geometry.drawPolygon
 import org.tendiwa.canvas.algorithms.grid.drawGridMask
 import org.tendiwa.canvas.awt.AwtCanvas
 import org.tendiwa.derasterization.polygons.derasterized
@@ -23,7 +23,7 @@ fun main(args: Array<String>) {
             .derasterized
             .first()
             .enclosing
-            .let { draw(it, Color.red) }
+            .let { drawPolygon(it, Color.red) }
     }
 }
 

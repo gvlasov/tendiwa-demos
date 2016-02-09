@@ -11,7 +11,7 @@ fun main(args: Array<String>) {
         IntRange(0, 100)
             .map { index ->
                 AnimationFrame {
-                    draw(
+                    drawGridRectangle(
                         GridRectangle(
                             index * 3,
                             index * 3,

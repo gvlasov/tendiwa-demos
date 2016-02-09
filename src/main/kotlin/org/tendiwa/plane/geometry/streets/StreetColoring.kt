@@ -4,7 +4,7 @@ import org.jgrapht.UndirectedGraph
 import org.jgrapht.alg.ChromaticNumber
 import org.jgrapht.graph.DefaultEdge
 import org.jgrapht.graph.SimpleGraph
-import org.tendiwa.canvas.algorithms.geometry.draw
+import org.tendiwa.canvas.algorithms.geometry.drawSegmentGroup
 import org.tendiwa.canvas.api.Canvas
 import org.tendiwa.math.sets.allPossiblePairs
 import org.tendiwa.plane.geometry.paths.SegmentPath
@@ -24,7 +24,7 @@ fun StreetColoring(streets: List<SegmentPath>): Map<Color, Set<SegmentPath>> =
 fun Canvas.drawSegmentGroupColoring(coloring: Map<Color, Set<SegmentGroup>>) {
     for ((color, groups) in coloring) {
         for (group in groups) {
-            this.draw(group, color)
+            this.drawSegmentGroup(group, color)
         }
     }
 }

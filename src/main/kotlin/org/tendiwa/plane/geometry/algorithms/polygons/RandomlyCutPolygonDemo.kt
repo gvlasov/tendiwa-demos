@@ -1,6 +1,6 @@
 package org.tendiwa.plane.geometry.algorithms.polygons
 
-import org.tendiwa.canvas.algorithms.geometry.draw
+import org.tendiwa.canvas.algorithms.geometry.drawPolygon
 import org.tendiwa.canvas.awt.AwtCanvas
 import org.tendiwa.math.doubles.sums.RandomSum
 import org.tendiwa.math.doubles.sums.toCircularSliders
@@ -34,7 +34,7 @@ fun main(args: Array<String>) {
                 .let { polygon.cut(it) }
                 .cuts
                 .map { Circle(it, 0.4) }
-                .forEach { draw(it, Color.blue) }
-            draw(polygon, Color.black)
+                .forEach { drawCircle(it, Color.blue) }
+            drawPolygon(polygon, Color.black)
         }
 }

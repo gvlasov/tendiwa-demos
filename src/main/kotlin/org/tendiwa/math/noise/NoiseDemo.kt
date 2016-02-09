@@ -1,6 +1,6 @@
 package org.tendiwa.math.noise
 
-import org.tendiwa.canvas.algorithms.grid.draw
+import org.tendiwa.canvas.algorithms.grid.drawTile
 import org.tendiwa.canvas.awt.AwtCanvas
 import org.tendiwa.plane.grid.dimensions.by
 import org.tendiwa.plane.grid.tiles.Tile
@@ -13,11 +13,11 @@ fun main(args: Array<String>) {
             .forEach {
                 val noiseValue = noise.at(it, 120)
                 if (noiseValue > 150) {
-                    draw(it, Color.yellow)
+                    drawTile(it, Color.yellow)
                 } else if (noiseValue > 120)
-                    draw(it, Color.green)
+                    drawTile(it, Color.green)
                 else {
-                    draw(it, Color.blue)
+                    drawTile(it, Color.blue)
                 }
             }
     }

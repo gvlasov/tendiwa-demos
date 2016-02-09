@@ -1,6 +1,6 @@
 package org.tendiwa.plane.geometry.streets
 
-import org.tendiwa.canvas.algorithms.geometry.draw
+import org.tendiwa.canvas.algorithms.geometry.drawSegmentGroup
 import org.tendiwa.canvas.awt.AwtCanvas
 import org.tendiwa.plane.directions.CardinalDirection.*
 import org.tendiwa.plane.directions.OrdinalDirection.*
@@ -18,7 +18,7 @@ fun main(args: Array<String>) {
         .apply {
             for ((color, streetGroup) in StreetColoring(streetNetwork())) {
                 streetGroup.forEach {
-                    draw(it, color)
+                    drawSegmentGroup(it, color)
                 }
             }
         }

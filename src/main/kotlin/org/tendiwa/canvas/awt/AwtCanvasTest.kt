@@ -22,14 +22,14 @@ fun main(args: Array<String>) {
 }
 
 private fun AwtCanvas.drawShit() {
-    draw(GridRectangle(0, 0, 1, 1), Color.green)
-    draw(Segment(Point(0.0, 0.0), Point(1.0, 1.0)), Color.black)
-    draw(Circle(Point(1.0, 0.0), 0.5), Color.lightGray)
-    draw(GridRectangle(11, 11, 30, 50), Color.blue)
-    draw(10, 10, Color.red)
-    draw(20, 10, Color.red)
-    draw(Point(10.0, 15.0).spanHorizontalSegment(100.0), Color.black)
-    draw(GridRectangle(40, 100, 30, 50), Color.blue)
+    drawGridRectangle(GridRectangle(0, 0, 1, 1), Color.green)
+    drawSegment(Segment(Point(0.0, 0.0), Point(1.0, 1.0)), Color.black)
+    drawCircle(Circle(Point(1.0, 0.0), 0.5), Color.lightGray)
+    drawGridRectangle(GridRectangle(11, 11, 30, 50), Color.blue)
+    drawCircle(10, 10, Color.red)
+    drawCircle(20, 10, Color.red)
+    drawSegment(Point(10.0, 15.0).spanHorizontalSegment(100.0), Color.black)
+    drawGridRectangle(GridRectangle(40, 100, 30, 50), Color.blue)
     drawBillboard(
         Point(70.0, 50.0),
         "byoggibidTl",
@@ -37,8 +37,8 @@ private fun AwtCanvas.drawShit() {
         Color.red
     )
     val rec = GridRectangle(300, 100, 50, 50)
-    draw(rec, Color.black)
+    drawGridRectangle(rec, Color.black)
     drawText("hello", rec.corner(SW).toPoint(), Color.white)
-    draw(Circle(Point(100.0, 100.0), radius = 5.0), Color.red)
+    drawCircle(Circle(Point(100.0, 100.0), radius = 5.0), Color.red)
     drawArrow(Segment(Point(80.0, 90.0), Point(144.0, 159.0)), Color.black, 3.0)
 }

@@ -1,6 +1,6 @@
 package org.tendiwa.plane.geometry
 
-import org.tendiwa.canvas.algorithms.geometry.draw
+import org.tendiwa.canvas.algorithms.geometry.drawPolygon
 import org.tendiwa.canvas.awt.AwtCanvas
 import org.tendiwa.math.ranges.SizeRange
 import org.tendiwa.plane.geometry.algorithms.polygons.shrinking.shrink
@@ -63,7 +63,7 @@ fun main(args: Array<String>) {
         .apply {
             drawSegmentGroupColoring(streetColoring)
             lots.forEach {
-                draw(it, Color.black)
+                drawPolygon(it, Color.black)
             }
         }
 }

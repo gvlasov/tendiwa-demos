@@ -8,6 +8,6 @@ fun main(args: Array<String>) {
         GridRectangle(-5, -5, 200, 200),
         scale = 1
     ).apply {
-        draw(GridRectangle(0, 0, 20, 20), Color.green)
+        drawGridRectangle(GridRectangle(0, 0, 20, 20), Color.green)
     }
 }

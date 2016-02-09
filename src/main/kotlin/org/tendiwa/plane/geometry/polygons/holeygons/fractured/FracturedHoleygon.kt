@@ -1,6 +1,6 @@
 package org.tendiwa.plane.geometry.polygons.holeygons.fractured
 
-import org.tendiwa.canvas.algorithms.geometry.graphs.draw
+import org.tendiwa.canvas.algorithms.geometry.graphs.drawGraph2D
 import org.tendiwa.canvas.awt.AwtCanvas
 import org.tendiwa.math.angles.AngularMeasure
 import org.tendiwa.math.ranges.SizeRange
@@ -50,6 +50,6 @@ fun main(args: Array<String>) {
                             favourAxisAlignedSegments = false
                         ).roads
                     }
-            draw(fracturedHoleygon, Color.red)
+            drawGraph2D(fracturedHoleygon, Color.red)
         }
 }

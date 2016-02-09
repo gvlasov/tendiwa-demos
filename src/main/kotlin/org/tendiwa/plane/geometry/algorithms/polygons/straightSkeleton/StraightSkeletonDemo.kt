@@ -1,6 +1,6 @@
 package org.tendiwa.plane.geometry.algorithms.polygons.straightSkeleton
 
-import org.tendiwa.canvas.algorithms.geometry.draw
+import org.tendiwa.canvas.algorithms.geometry.drawPolygon
 import org.tendiwa.canvas.awt.AwtCanvas
 import org.tendiwa.plane.directions.CardinalDirection.*
 import org.tendiwa.plane.directions.OrdinalDirection.*
@@ -27,9 +27,9 @@ fun main(args: Array<String>) {
                     move(170.0, W)
                 }
             )
-        draw(polygon, Color.black)
+        drawPolygon(polygon, Color.black)
         polygon.shrink(8.0).forEach {
-            draw(it, Color.red)
+            drawPolygon(it, Color.red)
         }
     }
 }

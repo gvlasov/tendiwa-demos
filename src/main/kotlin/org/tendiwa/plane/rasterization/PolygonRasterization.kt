@@ -1,6 +1,6 @@
 package org.tendiwa.plane.rasterization
 
-import org.tendiwa.canvas.algorithms.geometry.draw
+import org.tendiwa.canvas.algorithms.geometry.drawPolygon
 import org.tendiwa.canvas.algorithms.grid.drawGridMask
 import org.tendiwa.canvas.awt.AwtCanvas
 import org.tendiwa.plane.geometry.points.Point
@@ -28,11 +28,11 @@ fun main(args: Array<String>) {
         val rasterizedSmallPolygon = smallPolygon
             .rasterize()
 
-        draw(smallPolygon.gridHull, Color.pink)
+        drawGridRectangle(smallPolygon.gridHull, Color.pink)
 //        draw(rasterizedSmallPolygon, Color.green)
-        draw(smallPolygon, Color.blue)
+        drawPolygon(smallPolygon, Color.blue)
         val maximalRectangle = rasterizedSmallPolygon
             .maximalRectangle()!!
-        draw(maximalRectangle, Color.green)
+        drawGridRectangle(maximalRectangle, Color.green)
     }
 }
