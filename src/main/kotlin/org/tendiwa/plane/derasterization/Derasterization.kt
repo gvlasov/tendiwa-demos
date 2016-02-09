@@ -20,7 +20,7 @@ fun main(args: Array<String>) {
             .union(component2)
             .boundedBy(GridRectangularHull(component1, component2))
             .apply { drawGridMask(this, Color.blue) }
-            .derasterized
+            .derasterized()
             .first()
             .enclosing
             .let { drawPolygon(it, Color.red) }

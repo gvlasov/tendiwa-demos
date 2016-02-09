@@ -48,7 +48,7 @@ data class WorldGeometry(val viewport: GridRectangle) {
                     passable = terrain.deflate(5)
                 )
                     .reachableMask
-                    .derasterized
+                    .derasterized()
             }
             .map {
                 RandomCrackedHoleygon(
