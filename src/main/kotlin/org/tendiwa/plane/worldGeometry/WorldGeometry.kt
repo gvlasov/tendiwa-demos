@@ -4,6 +4,7 @@ import org.tendiwa.derasterization.polygons.derasterized
 import org.tendiwa.math.noise.PerlinNoise
 import org.tendiwa.math.ranges.SizeRange
 import org.tendiwa.plane.geometry.algorithms.polygons.shrinking.shrink
+import org.tendiwa.plane.geometry.crackedHoleygon.random.RandomCrackedHoleygon
 import org.tendiwa.plane.geometry.graphs.Graph2D
 import org.tendiwa.plane.geometry.graphs.cycles.minimumCycleBasis.minimumCycleBasis
 import org.tendiwa.plane.geometry.graphs.cycles.toPolygon
@@ -20,7 +21,6 @@ import org.tendiwa.plane.grid.masks.inverse
 import org.tendiwa.plane.grid.rectangles.GridRectangle
 import org.tendiwa.plane.rasterization.polygon.rasterize
 import org.tendiwa.plane.settlements.quarters.ortho.random.orthoFractured
-import org.tendiwa.plane.settlements.roadNetwork.random.RandomCrackedHoleygon
 
 data class WorldGeometry(val viewport: GridRectangle) {
     val terrain =

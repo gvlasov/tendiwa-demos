@@ -4,6 +4,7 @@ import org.tendiwa.canvas.algorithms.geometry.drawPolygon
 import org.tendiwa.canvas.awt.AwtCanvas
 import org.tendiwa.math.ranges.SizeRange
 import org.tendiwa.plane.geometry.algorithms.polygons.shrinking.shrink
+import org.tendiwa.plane.geometry.crackedHoleygon.random.RandomCrackedHoleygon
 import org.tendiwa.plane.geometry.graphs.cycles.minimumCycleBasis.minimumCycleBasis
 import org.tendiwa.plane.geometry.graphs.cycles.toPolygon
 import org.tendiwa.plane.geometry.graphs.toSegmentGroup
@@ -14,7 +15,6 @@ import org.tendiwa.plane.geometry.streets.StreetColoring
 import org.tendiwa.plane.geometry.streets.drawSegmentGroupColoring
 import org.tendiwa.plane.grid.dimensions.by
 import org.tendiwa.plane.settlements.quarters.ortho.random.orthoFractured
-import org.tendiwa.plane.settlements.roadNetwork.random.RandomCrackedHoleygon
 import org.tendiwa.plane.settlements.streets.streets
 import java.awt.Color
 
