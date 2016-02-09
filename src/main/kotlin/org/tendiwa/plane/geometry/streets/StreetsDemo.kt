@@ -10,7 +10,7 @@ import org.tendiwa.plane.geometry.paths.SegmentPath
 import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.polygons.Polygon
 import org.tendiwa.plane.grid.dimensions.by
-import org.tendiwa.plane.settlements.roadNetwork.random.fracture
+import org.tendiwa.plane.settlements.roadNetwork.random.RandomRoadNetworkGeometry
 import org.tendiwa.plane.settlements.streets.streets
 
 fun main(args: Array<String>) {
@@ -25,11 +25,12 @@ fun main(args: Array<String>) {
 }
 
 private fun streetNetwork(): List<SegmentPath> =
-    holeygon()
-        .fracture(
-            roadsFromPoint = 4,
-            favourAxisAlignedSegments = true
-        )
+    RandomRoadNetworkGeometry(
+        border = holeygon(),
+        roadsFromPoint = 4,
+        favourAxisAlignedSegments = true
+    )
+        .roads
         .toSegmentGroup()
         .streets()
 

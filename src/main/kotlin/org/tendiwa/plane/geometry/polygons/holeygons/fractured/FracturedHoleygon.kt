@@ -11,8 +11,8 @@ import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.polygons.Polygon
 import org.tendiwa.plane.geometry.rectangles.Rectangle
 import org.tendiwa.plane.grid.dimensions.by
+import org.tendiwa.plane.settlements.roadNetwork.random.RandomRoadNetworkGeometry
 import org.tendiwa.plane.settlements.roadNetwork.random.SnapRadius
-import org.tendiwa.plane.settlements.roadNetwork.random.fracture
 import java.awt.Color
 
 fun main(args: Array<String>) {
@@ -40,13 +40,16 @@ fun main(args: Array<String>) {
                         Rectangle(35.0, 25.0, 5.0, 5.0)
                     )
                 )
-                    .fracture(
-                        roadsFromPoint = 4,
-                        crackSegmentLengths = SizeRange(10.0..15.0),
-                        snapRadius = SnapRadius(8.0),
-                        crackDeviation = AngularMeasure(Math.toRadians(20.0)),
-                        favourAxisAlignedSegments = false
-                    )
+                    .let { holeygon ->
+                        RandomRoadNetworkGeometry(
+                            border = holeygon,
+                            roadsFromPoint = 4,
+                            crackSegmentLengths = SizeRange(10.0..15.0),
+                            snapRadius = SnapRadius(8.0),
+                            crackDeviation = AngularMeasure(Math.toRadians(20.0)),
+                            favourAxisAlignedSegments = false
+                        ).roads
+                    }
             draw(fracturedHoleygon, Color.red)
         }
 }
