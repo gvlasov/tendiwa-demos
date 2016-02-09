@@ -11,7 +11,6 @@ import org.tendiwa.plane.geometry.paths.SegmentPath
 import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.polygons.Polygon
 import org.tendiwa.plane.grid.dimensions.by
-import org.tendiwa.plane.settlements.streets.streets
 
 fun main(args: Array<String>) {
     AwtCanvas(size = 256 by 295, scale = 3)

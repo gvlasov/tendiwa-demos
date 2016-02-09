@@ -9,13 +9,13 @@ import org.tendiwa.plane.geometry.graphs.cycles.minimumCycleBasis.minimumCycleBa
 import org.tendiwa.plane.geometry.graphs.cycles.toPolygon
 import org.tendiwa.plane.geometry.graphs.toSegmentGroup
 import org.tendiwa.plane.geometry.holeygons.Holeygon
+import org.tendiwa.plane.geometry.orthoFracturedPolygon.orthoFractured
 import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.polygons.Polygon
 import org.tendiwa.plane.geometry.streets.StreetColoring
 import org.tendiwa.plane.geometry.streets.drawSegmentGroupColoring
+import org.tendiwa.plane.geometry.streets.streets
 import org.tendiwa.plane.grid.dimensions.by
-import org.tendiwa.plane.settlements.quarters.ortho.random.orthoFractured
-import org.tendiwa.plane.settlements.streets.streets
 import java.awt.Color
 
 fun main(args: Array<String>) {
