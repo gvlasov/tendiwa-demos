@@ -16,7 +16,6 @@ import java.util.*
 fun StreetColoring(streets: List<SegmentPath>): Map<Color, Set<SegmentPath>> =
     StreetIntersectionGraph(streets)
         .let { ChromaticNumber.findGreedyColoredGroups(it) }
-        .apply { println(size) }
         .entries
         .map { Pair(colors[it.key], it.value) }
         .toMap()
