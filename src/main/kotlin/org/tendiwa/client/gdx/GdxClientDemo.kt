@@ -4,7 +4,7 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplication
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration
 import org.tendiwa.backend.modules.roguelike.aspects.Health
 import org.tendiwa.backend.modules.roguelike.aspects.Name
-import org.tendiwa.backend.modules.roguelike.aspects.Position
+import org.tendiwa.backend.space.aspects.Position
 import org.tendiwa.backend.modules.roguelike.aspects.Weight
 import org.tendiwa.backend.modules.roguelike.player.PlayerVolition
 import org.tendiwa.backend.modules.roguelike.things.Human
@@ -14,6 +14,7 @@ import org.tendiwa.backend.space.Voxel
 import org.tendiwa.backend.space.floors.FloorPlane
 import org.tendiwa.backend.space.floors.FloorType
 import org.tendiwa.backend.space.floors.floors
+import org.tendiwa.backend.space.realThing.RealThingPlane
 import org.tendiwa.backend.space.walls.WallPlane
 import org.tendiwa.backend.space.walls.WallType
 import org.tendiwa.backend.space.walls.walls
@@ -30,15 +31,18 @@ fun main(args: Array<String>) {
             height = 480
             resizable = false
         }
+    val worldSize = 320 by 320
+    val playerVolition = PlayerVolition()
     LwjglApplication(
         TendiwaGame(
             "atlas/example.atlas",
             Reality(
                 space = Space(
-                    GridRectangle(320 by 320),
+                    GridRectangle(worldSize),
                     listOf(
-                        FloorPlane(320 by 320),
-                        WallPlane(320 by 320)
+                        FloorPlane(worldSize),
+                        WallPlane(worldSize),
+                        RealThingPlane(worldSize)
                     )
                 )
                     .apply { // Setting up space
@@ -52,7 +56,7 @@ fun main(args: Array<String>) {
                                 Math.sin(x.toDouble() + y) > 0.5
                             }
                         mask
-                            .boundedBy(GridRectangle(320 by 320))
+                            .boundedBy(GridRectangle(worldSize))
                             .hull
                             .forEachTile { x, y ->
                                 val floorType =
@@ -83,7 +87,7 @@ fun main(args: Array<String>) {
                             Name("Suseika"),
                             Weight(550),
                             Health(100)
-                        ).apply { addAspect(PlayerVolition()) }
+                        ).apply { addAspect(playerVolition) }
                     )
                 }
         ),
