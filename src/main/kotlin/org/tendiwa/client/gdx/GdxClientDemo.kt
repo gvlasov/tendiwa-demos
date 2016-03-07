@@ -4,13 +4,12 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplication
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration
 import org.tendiwa.backend.modules.roguelike.aspects.Health
 import org.tendiwa.backend.modules.roguelike.aspects.Name
-import org.tendiwa.backend.space.aspects.Position
 import org.tendiwa.backend.modules.roguelike.aspects.Weight
-import org.tendiwa.backend.modules.roguelike.player.PlayerVolition
 import org.tendiwa.backend.modules.roguelike.things.Human
 import org.tendiwa.backend.space.Reality
 import org.tendiwa.backend.space.Space
 import org.tendiwa.backend.space.Voxel
+import org.tendiwa.backend.space.aspects.Position
 import org.tendiwa.backend.space.floors.FloorPlane
 import org.tendiwa.backend.space.floors.FloorType
 import org.tendiwa.backend.space.floors.floors
@@ -18,6 +17,7 @@ import org.tendiwa.backend.space.realThing.RealThingPlane
 import org.tendiwa.backend.space.walls.WallPlane
 import org.tendiwa.backend.space.walls.WallType
 import org.tendiwa.backend.space.walls.walls
+import org.tendiwa.frontend.generic.PlayerVolition
 import org.tendiwa.plane.grid.constructors.GridRectangle
 import org.tendiwa.plane.grid.dimensions.by
 import org.tendiwa.plane.grid.masks.GridMask
