@@ -2,8 +2,25 @@ package org.tendiwa.client.gdx
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration
-import org.tendiwa.client.gdx.temporaryImpls.CameraInputAdapter
-import org.tendiwa.client.gdx.temporaryImpls.ExampleVicinity
+import org.tendiwa.backend.modules.roguelike.aspects.Health
+import org.tendiwa.backend.modules.roguelike.aspects.Name
+import org.tendiwa.backend.modules.roguelike.aspects.Position
+import org.tendiwa.backend.modules.roguelike.aspects.Weight
+import org.tendiwa.backend.modules.roguelike.player.PlayerVolition
+import org.tendiwa.backend.modules.roguelike.things.Human
+import org.tendiwa.backend.space.Reality
+import org.tendiwa.backend.space.Space
+import org.tendiwa.backend.space.Voxel
+import org.tendiwa.backend.space.floors.FloorPlane
+import org.tendiwa.backend.space.floors.FloorType
+import org.tendiwa.backend.space.floors.floors
+import org.tendiwa.backend.space.walls.WallPlane
+import org.tendiwa.backend.space.walls.WallType
+import org.tendiwa.backend.space.walls.walls
+import org.tendiwa.plane.grid.constructors.GridRectangle
+import org.tendiwa.plane.grid.dimensions.by
+import org.tendiwa.plane.grid.masks.GridMask
+import org.tendiwa.plane.grid.masks.boundedBy
 
 fun main(args: Array<String>) {
     val config =
@@ -13,12 +30,62 @@ fun main(args: Array<String>) {
             height = 480
             resizable = false
         }
-    val vicinity = ExampleVicinity()
     LwjglApplication(
         TendiwaGame(
-            atlasPath = "atlas/example.atlas",
-            createInputProcessor = { camera -> CameraInputAdapter(camera, vicinity) },
-            vicinity = vicinity
+            "atlas/example.atlas",
+            Reality(
+                space = Space(
+                    GridRectangle(320 by 320),
+                    listOf(
+                        FloorPlane(320 by 320),
+                        WallPlane(320 by 320)
+                    )
+                )
+                    .apply { // Setting up space
+                        val grassFloor = FloorType("grass", false)
+                        val stoneFloor = FloorType("stone", false)
+                        val stoneWall = WallType("wall_gray_stone")
+                        val voidWall = WallType.void
+                        val mask =
+                            GridMask {
+                                x, y ->
+                                Math.sin(x.toDouble() + y) > 0.5
+                            }
+                        mask
+                            .boundedBy(GridRectangle(320 by 320))
+                            .hull
+                            .forEachTile { x, y ->
+                                val floorType =
+                                    if (mask.contains(x, y)) {
+                                        grassFloor
+                                    } else {
+                                        stoneFloor
+                                    }
+                                val wallType =
+                                    if (mask.contains(x, y)) {
+                                        stoneWall
+                                    } else {
+                                        voidWall
+                                    }
+                                floors
+                                    .chunkWithTile(x, y)
+                                    .setFloor(x, y, floorType)
+                                walls
+                                    .chunkWithTile(x, y)
+                                    .setWall(x, y, wallType)
+                            }
+                    }
+            )
+                .apply { // Setting up reality
+                    addRealThing(
+                        Human(
+                            Position(Voxel(20, 30, 0)),
+                            Name("Suseika"),
+                            Weight(550),
+                            Health(100)
+                        ).apply { addAspect(PlayerVolition()) }
+                    )
+                }
         ),
         config
     )
