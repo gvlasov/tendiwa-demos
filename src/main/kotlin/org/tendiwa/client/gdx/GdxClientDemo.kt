@@ -17,6 +17,7 @@ import org.tendiwa.backend.space.realThing.RealThingPlane
 import org.tendiwa.backend.space.walls.WallPlane
 import org.tendiwa.backend.space.walls.WallType
 import org.tendiwa.backend.space.walls.walls
+import org.tendiwa.frontend.gdx.plugin.roguelike.RoguelikePlugin
 import org.tendiwa.frontend.generic.PlayerVolition
 import org.tendiwa.plane.grid.constructors.GridRectangle
 import org.tendiwa.plane.grid.dimensions.by
@@ -90,7 +91,8 @@ fun main(args: Array<String>) {
                         ).apply { addAspect(playerVolition) }
                     )
                 },
-            playerVolition
+            playerVolition,
+            listOf(RoguelikePlugin())
         ),
         config
     )
