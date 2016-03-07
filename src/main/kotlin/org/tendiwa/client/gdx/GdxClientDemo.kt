@@ -89,7 +89,8 @@ fun main(args: Array<String>) {
                             Health(100)
                         ).apply { addAspect(playerVolition) }
                     )
-                }
+                },
+            playerVolition
         ),
         config
     )
