@@ -3,17 +3,18 @@ package org.tendiwa.client.gdx
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration
 import org.tendiwa.backend.modules.roguelike.aspects.Health
-import org.tendiwa.backend.modules.roguelike.aspects.Name
 import org.tendiwa.backend.modules.roguelike.aspects.Weight
 import org.tendiwa.backend.modules.roguelike.things.Human
 import org.tendiwa.backend.space.Reality
 import org.tendiwa.backend.space.Space
 import org.tendiwa.backend.space.Voxel
+import org.tendiwa.backend.space.aspects.Name
 import org.tendiwa.backend.space.aspects.Position
 import org.tendiwa.backend.space.floors.FloorPlane
 import org.tendiwa.backend.space.floors.FloorType
 import org.tendiwa.backend.space.floors.floors
 import org.tendiwa.backend.space.realThing.RealThingPlane
+import org.tendiwa.backend.space.realThing.realThings
 import org.tendiwa.backend.space.walls.WallPlane
 import org.tendiwa.backend.space.walls.WallType
 import org.tendiwa.backend.space.walls.walls
@@ -82,14 +83,15 @@ fun main(args: Array<String>) {
                     }
             )
                 .apply { // Setting up reality
-                    addRealThing(
+                    val playerCharacter =
                         Human(
-                            Position(Voxel(20, 30, 0)),
+                            Position(Voxel(7, 7, 0)),
                             Name("Suseika"),
                             Weight(550),
                             Health(100)
                         ).apply { addAspect(playerVolition) }
-                    )
+                    addRealThing(playerCharacter)
+                    space.realThings.addRealThing(playerCharacter)
                 },
             playerVolition,
             listOf(RoguelikePlugin())

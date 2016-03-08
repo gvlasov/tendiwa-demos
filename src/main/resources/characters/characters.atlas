@@ -1,0 +1,188 @@
+
+characters.png
+size: 512,128
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+bear
+  rotate: false
+  xy: 2, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+carrotGolem
+  rotate: false
+  xy: 68, 68
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+dragon
+  rotate: false
+  xy: 2, 36
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+dwarvenHooker
+  rotate: false
+  xy: 102, 68
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+evileye
+  rotate: false
+  xy: 136, 68
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+gecko
+  rotate: false
+  xy: 170, 68
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+gnaar
+  rotate: false
+  xy: 204, 68
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+goblin
+  rotate: false
+  xy: 238, 68
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+goblinMage
+  rotate: false
+  xy: 272, 68
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+hobgoblin
+  rotate: false
+  xy: 306, 68
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+innkeeper
+  rotate: false
+  xy: 340, 68
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+knight
+  rotate: false
+  xy: 374, 68
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+lumberjack
+  rotate: false
+  xy: 408, 68
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+ogre
+  rotate: false
+  xy: 442, 68
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+orcishHooker
+  rotate: false
+  xy: 476, 68
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+player
+  rotate: false
+  xy: 36, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+skeletonArcher
+  rotate: false
+  xy: 70, 34
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+skeletonMage
+  rotate: false
+  xy: 104, 34
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+skeletonWarrior
+  rotate: false
+  xy: 138, 34
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+slug
+  rotate: false
+  xy: 172, 34
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+smallYukkuri
+  rotate: false
+  xy: 206, 34
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+troll
+  rotate: false
+  xy: 240, 34
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+warrior
+  rotate: false
+  xy: 274, 34
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+wizard
+  rotate: false
+  xy: 308, 34
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yukkuri
+  rotate: false
+  xy: 342, 34
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+zombie
+  rotate: false
+  xy: 376, 34
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
