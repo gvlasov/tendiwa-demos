@@ -24,6 +24,7 @@ import org.tendiwa.plane.grid.constructors.GridRectangle
 import org.tendiwa.plane.grid.dimensions.by
 import org.tendiwa.plane.grid.masks.GridMask
 import org.tendiwa.plane.grid.masks.boundedBy
+import org.tendiwa.stimuli.StimulusMedium
 import org.tendiwa.time.TimeStream
 
 fun main(args: Array<String>) {
@@ -36,7 +37,9 @@ fun main(args: Array<String>) {
         }
     val worldSize = 320 by 320
     val playerVolition = PlayerVolition()
+    val medium = StimulusMedium()
     val reality = Reality(
+        medium = medium,
         space = Space(
             GridRectangle(worldSize),
             listOf(
@@ -96,6 +99,7 @@ fun main(args: Array<String>) {
             "atlas/example.atlas",
             reality,
             playerVolition,
+            medium,
             listOf(RoguelikePlugin())
         ),
         config
