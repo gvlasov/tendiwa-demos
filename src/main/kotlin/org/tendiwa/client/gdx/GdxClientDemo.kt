@@ -86,7 +86,7 @@ fun main(args: Array<String>) {
                     val playerCharacter =
                         Human(
                             Position(Voxel(7, 7, 0)),
-                            Name("Suseika"),
+                            Name("bear"),
                             Weight(550),
                             Health(100)
                         ).apply { addAspect(playerVolition) }
