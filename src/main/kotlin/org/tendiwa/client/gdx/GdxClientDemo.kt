@@ -24,6 +24,7 @@ import org.tendiwa.plane.grid.constructors.GridRectangle
 import org.tendiwa.plane.grid.dimensions.by
 import org.tendiwa.plane.grid.masks.GridMask
 import org.tendiwa.plane.grid.masks.boundedBy
+import org.tendiwa.time.TimeStream
 
 fun main(args: Array<String>) {
     val config =
@@ -35,68 +36,76 @@ fun main(args: Array<String>) {
         }
     val worldSize = 320 by 320
     val playerVolition = PlayerVolition()
+    val reality = Reality(
+        space = Space(
+            GridRectangle(worldSize),
+            listOf(
+                FloorPlane(worldSize),
+                WallPlane(worldSize),
+                RealThingPlane(worldSize)
+            )
+        )
+            .apply { // Setting up space
+                val grassFloor = FloorType("grass", false)
+                val stoneFloor = FloorType("stone", false)
+                val stoneWall = WallType("wall_gray_stone")
+                val voidWall = WallType.void
+                val mask =
+                    GridMask {
+                        x, y ->
+                        Math.sin(x.toDouble() + y) > 0.5
+                    }
+                mask
+                    .boundedBy(GridRectangle(worldSize))
+                    .hull
+                    .forEachTile { x, y ->
+                        val floorType =
+                            if (mask.contains(x, y)) {
+                                grassFloor
+                            } else {
+                                stoneFloor
+                            }
+                        val wallType =
+                            if (mask.contains(x, y)) {
+                                stoneWall
+                            } else {
+                                voidWall
+                            }
+                        floors
+                            .chunkWithTile(x, y)
+                            .setFloor(x, y, floorType)
+                        walls
+                            .chunkWithTile(x, y)
+                            .setWall(x, y, wallType)
+                    }
+            }
+    )
+        .apply { // Setting up reality
+            val playerCharacter =
+                Human(
+                    Position(Voxel(7, 7, 0)),
+                    Name("bear"),
+                    Weight(550),
+                    Health(100)
+                ).apply { addAspect(playerVolition) }
+            addRealThing(playerCharacter)
+            space.realThings.addRealThing(playerCharacter)
+        }
     LwjglApplication(
         TendiwaGame(
             "atlas/example.atlas",
-            Reality(
-                space = Space(
-                    GridRectangle(worldSize),
-                    listOf(
-                        FloorPlane(worldSize),
-                        WallPlane(worldSize),
-                        RealThingPlane(worldSize)
-                    )
-                )
-                    .apply { // Setting up space
-                        val grassFloor = FloorType("grass", false)
-                        val stoneFloor = FloorType("stone", false)
-                        val stoneWall = WallType("wall_gray_stone")
-                        val voidWall = WallType.void
-                        val mask =
-                            GridMask {
-                                x, y ->
-                                Math.sin(x.toDouble() + y) > 0.5
-                            }
-                        mask
-                            .boundedBy(GridRectangle(worldSize))
-                            .hull
-                            .forEachTile { x, y ->
-                                val floorType =
-                                    if (mask.contains(x, y)) {
-                                        grassFloor
-                                    } else {
-                                        stoneFloor
-                                    }
-                                val wallType =
-                                    if (mask.contains(x, y)) {
-                                        stoneWall
-                                    } else {
-                                        voidWall
-                                    }
-                                floors
-                                    .chunkWithTile(x, y)
-                                    .setFloor(x, y, floorType)
-                                walls
-                                    .chunkWithTile(x, y)
-                                    .setWall(x, y, wallType)
-                            }
-                    }
-            )
-                .apply { // Setting up reality
-                    val playerCharacter =
-                        Human(
-                            Position(Voxel(7, 7, 0)),
-                            Name("bear"),
-                            Weight(550),
-                            Health(100)
-                        ).apply { addAspect(playerVolition) }
-                    addRealThing(playerCharacter)
-                    space.realThings.addRealThing(playerCharacter)
-                },
+            reality,
             playerVolition,
             listOf(RoguelikePlugin())
         ),
         config
     )
+    val timeStream = TimeStream(reality, emptyList())
+    playerVolition.addActorTo(timeStream)
+    Thread({
+        while (true) {
+            timeStream.play()
+        }
+    }).start()
 }
 
