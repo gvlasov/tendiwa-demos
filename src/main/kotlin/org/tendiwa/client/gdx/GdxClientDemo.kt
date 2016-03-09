@@ -45,7 +45,7 @@ fun main(args: Array<String>) {
             listOf(
                 FloorPlane(worldSize),
                 WallPlane(worldSize),
-                RealThingPlane(worldSize)
+                RealThingPlane(worldSize, medium)
             )
         )
             .apply { // Setting up space
