@@ -24,8 +24,8 @@ import org.tendiwa.plane.grid.constructors.GridRectangle
 import org.tendiwa.plane.grid.dimensions.by
 import org.tendiwa.plane.grid.masks.GridMask
 import org.tendiwa.plane.grid.masks.boundedBy
-import org.tendiwa.stimuli.StimulusMedium
-import org.tendiwa.time.TimeStream
+import org.tendiwa.backend.existence.StimulusMedium
+import org.tendiwa.backend.time.TimeStream
 
 fun main(args: Array<String>) {
     val config =
