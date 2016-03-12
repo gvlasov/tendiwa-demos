@@ -57,7 +57,7 @@ fun main(args: Array<String>) {
                 val mask =
                     GridMask {
                         x, y ->
-                        Math.sin(x.toDouble() + y) > 0.5
+                        Math.sin(x.toDouble() + y) > 0.5 && Math.cos(x.toDouble () + y) > 0.5
                     }
                 mask
                     .boundedBy(GridRectangle(worldSize))
