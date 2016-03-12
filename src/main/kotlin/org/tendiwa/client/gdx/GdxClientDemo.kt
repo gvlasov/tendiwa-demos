@@ -2,7 +2,9 @@ package org.tendiwa.client.gdx
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration
+import org.tendiwa.backend.existence.StimulusMedium
 import org.tendiwa.backend.modules.roguelike.aspects.Health
+import org.tendiwa.backend.modules.roguelike.aspects.PlayerVision
 import org.tendiwa.backend.modules.roguelike.aspects.Weight
 import org.tendiwa.backend.modules.roguelike.things.Human
 import org.tendiwa.backend.space.Reality
@@ -18,14 +20,13 @@ import org.tendiwa.backend.space.realThing.realThings
 import org.tendiwa.backend.space.walls.WallPlane
 import org.tendiwa.backend.space.walls.WallType
 import org.tendiwa.backend.space.walls.walls
+import org.tendiwa.backend.time.TimeStream
 import org.tendiwa.frontend.gdx.plugin.roguelike.RoguelikePlugin
 import org.tendiwa.frontend.generic.PlayerVolition
 import org.tendiwa.plane.grid.constructors.GridRectangle
 import org.tendiwa.plane.grid.dimensions.by
 import org.tendiwa.plane.grid.masks.GridMask
 import org.tendiwa.plane.grid.masks.boundedBy
-import org.tendiwa.backend.existence.StimulusMedium
-import org.tendiwa.backend.time.TimeStream
 
 fun main(args: Array<String>) {
     val config =
@@ -86,11 +87,14 @@ fun main(args: Array<String>) {
         .apply { // Setting up reality
             val playerCharacter =
                 Human(
-                    Position(Voxel(7, 7, 0)),
+                    Position(Voxel(6, 7, 0)),
                     Name("bear"),
                     Weight(550),
                     Health(100)
-                ).apply { addAspect(playerVolition) }
+                ).apply {
+                    addAspect(playerVolition)
+                    addAspect(PlayerVision())
+                }
             addRealThing(playerCharacter)
             space.realThings.addRealThing(playerCharacter)
         }
