@@ -21,12 +21,15 @@ import org.tendiwa.backend.space.walls.WallPlane
 import org.tendiwa.backend.space.walls.WallType
 import org.tendiwa.backend.space.walls.walls
 import org.tendiwa.backend.time.TimeStream
+import org.tendiwa.client.gdx.resources.images.ClasspathTextureBundle
+import org.tendiwa.client.gdx.resources.images.TextureAtlasCache
 import org.tendiwa.frontend.gdx.plugin.roguelike.RoguelikePlugin
 import org.tendiwa.frontend.generic.PlayerVolition
 import org.tendiwa.plane.grid.constructors.GridRectangle
 import org.tendiwa.plane.grid.dimensions.by
 import org.tendiwa.plane.grid.masks.GridMask
 import org.tendiwa.plane.grid.masks.boundedBy
+import java.nio.file.Paths
 
 fun main(args: Array<String>) {
     val config =
@@ -100,7 +103,17 @@ fun main(args: Array<String>) {
         }
     LwjglApplication(
         TendiwaGame(
-            "atlas/example.atlas",
+            {
+                TextureAtlasCache(
+                    Paths.get("target/textureCache"),
+                    ClasspathTextureBundle(
+                        listOf(
+                            "org/tendiwa/frontend/gdx/plugins/roguelike"
+                        )
+                    )
+                )
+                    .obtainAtlas()
+            },
             reality,
             playerVolition,
             medium,
