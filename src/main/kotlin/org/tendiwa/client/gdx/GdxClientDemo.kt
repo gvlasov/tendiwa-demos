@@ -7,6 +7,7 @@ import org.tendiwa.backend.modules.roguelike.aspects.Health
 import org.tendiwa.backend.modules.roguelike.aspects.PlayerVision
 import org.tendiwa.backend.modules.roguelike.aspects.Weight
 import org.tendiwa.backend.modules.roguelike.things.Human
+import org.tendiwa.backend.modules.roguelike.things.WarAxe
 import org.tendiwa.backend.space.Reality
 import org.tendiwa.backend.space.Space
 import org.tendiwa.backend.space.Voxel
@@ -100,6 +101,12 @@ fun main(args: Array<String>) {
                 }
             addRealThing(playerCharacter)
             space.realThings.addRealThing(playerCharacter)
+
+            val item = WarAxe()
+            item.populateAspects()
+            item.addAspect(Position(Voxel(9, 9, 0)))
+            addRealThing(item)
+            space.realThings.addRealThing(item)
         }
     LwjglApplication(
         TendiwaGame(
