@@ -1,4 +1,4 @@
-package org.tendiwa.client.gdx
+package org.tendiwa.frontend.gdx2d
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration
@@ -22,9 +22,9 @@ import org.tendiwa.backend.space.walls.WallPlane
 import org.tendiwa.backend.space.walls.WallType
 import org.tendiwa.backend.space.walls.walls
 import org.tendiwa.backend.time.TimeStream
-import org.tendiwa.client.gdx.resources.images.ClasspathTextureBundle
-import org.tendiwa.client.gdx.resources.images.TextureAtlasCache
-import org.tendiwa.frontend.gdx.plugin.roguelike.RoguelikePlugin
+import org.tendiwa.frontend.gdx2d.plugin.roguelike.RoguelikePlugin
+import org.tendiwa.frontend.gdx2d.resources.images.ClasspathTextureBundle
+import org.tendiwa.frontend.gdx2d.resources.images.TextureAtlasCache
 import org.tendiwa.frontend.generic.PlayerVolition
 import org.tendiwa.plane.grid.constructors.GridRectangle
 import org.tendiwa.plane.grid.dimensions.by
@@ -57,7 +57,7 @@ fun main(args: Array<String>) {
                 val grassFloor = FloorType("grass", false)
                 val stoneFloor = FloorType("stone", false)
                 val stoneWall = WallType("wall_gray_stone")
-                val voidWall = WallType.void
+                val voidWall = WallType.Companion.void
                 val mask =
                     GridMask {
                         x, y ->
