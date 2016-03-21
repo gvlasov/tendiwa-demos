@@ -101,9 +101,7 @@ fun main(args: Array<String>) {
                 }
             addRealThing(playerCharacter)
             space.realThings.addRealThing(playerCharacter)
-
             val item = WarAxe()
-            item.populateAspects()
             item.addAspect(Position(Voxel(9, 9, 0)))
             addRealThing(item)
             space.realThings.addRealThing(item)
