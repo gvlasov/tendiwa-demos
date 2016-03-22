@@ -6,6 +6,7 @@ import org.tendiwa.backend.existence.StimulusMedium
 import org.tendiwa.backend.modules.roguelike.aspects.Health
 import org.tendiwa.backend.modules.roguelike.aspects.PlayerVision
 import org.tendiwa.backend.modules.roguelike.aspects.Weight
+import org.tendiwa.backend.modules.roguelike.aspects.inventory
 import org.tendiwa.backend.modules.roguelike.things.Human
 import org.tendiwa.backend.modules.roguelike.things.WarAxe
 import org.tendiwa.backend.space.Reality
@@ -105,6 +106,13 @@ fun main(args: Array<String>) {
             item.addAspect(Position(Voxel(9, 9, 0)))
             addRealThing(item)
             space.realThings.addRealThing(item)
+
+            val inventoryAxe1 = WarAxe()
+            addRealThing(inventoryAxe1)
+            playerCharacter.inventory.store(this, inventoryAxe1)
+            val inventoryAxe2 = WarAxe()
+            addRealThing(inventoryAxe2)
+            playerCharacter.inventory.store(this, inventoryAxe2)
         }
     LwjglApplication(
         TendiwaGame(
