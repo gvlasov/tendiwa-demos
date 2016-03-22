@@ -42,9 +42,8 @@ fun main(args: Array<String>) {
             resizable = false
         }
     val worldSize = 320 by 320
-    val playerVolition = PlayerVolition()
     val medium = StimulusMedium()
-    val reality = Reality(
+    Reality(
         medium = medium,
         space = Space(
             GridRectangle(worldSize),
@@ -89,7 +88,8 @@ fun main(args: Array<String>) {
                     }
             }
     )
-        .apply { // Setting up reality
+        .let { reality -> // Setting up reality
+            val playerVolition = PlayerVolition(reality)
             val playerCharacter =
                 Human(
                     Position(Voxel(6, 7, 0)),
@@ -100,46 +100,48 @@ fun main(args: Array<String>) {
                     addAspect(playerVolition)
                     addAspect(PlayerVision())
                 }
-            addRealThing(playerCharacter)
-            space.realThings.addRealThing(playerCharacter)
+            reality.addRealThing(playerCharacter)
+            reality.space.realThings.addRealThing(playerCharacter)
             val item = WarAxe()
             item.addAspect(Position(Voxel(9, 9, 0)))
-            addRealThing(item)
-            space.realThings.addRealThing(item)
+            reality.addRealThing(item)
+            reality.space.realThings.addRealThing(item)
 
             val inventoryAxe1 = WarAxe()
-            addRealThing(inventoryAxe1)
-            playerCharacter.inventory.store(this, inventoryAxe1)
+            reality.addRealThing(inventoryAxe1)
+            playerCharacter.inventory.store(reality, inventoryAxe1)
             val inventoryAxe2 = WarAxe()
-            addRealThing(inventoryAxe2)
-            playerCharacter.inventory.store(this, inventoryAxe2)
-        }
-    LwjglApplication(
-        TendiwaGame(
-            {
-                TextureAtlasCache(
-                    Paths.get("target/textureCache"),
-                    ClasspathTextureBundle(
-                        listOf(
-                            "org/tendiwa/frontend/gdx/plugins/roguelike"
+            reality.addRealThing(inventoryAxe2)
+            playerCharacter.inventory.store(reality, inventoryAxe2)
+            // Setting up the frontend
+            LwjglApplication(
+                TendiwaGame(
+                    {
+                        TextureAtlasCache(
+                            Paths.get("target/textureCache"),
+                            ClasspathTextureBundle(
+                                listOf(
+                                    "org/tendiwa/frontend/gdx/plugins/roguelike"
+                                )
+                            )
                         )
-                    )
-                )
-                    .obtainAtlas()
-            },
-            reality,
-            playerVolition,
-            medium,
-            listOf(RoguelikePlugin())
-        ),
-        config
-    )
-    val timeStream = TimeStream(reality, emptyList())
-    playerVolition.addActorTo(timeStream)
-    Thread({
-        while (true) {
-            timeStream.play()
+                            .obtainAtlas()
+                    },
+                    reality,
+                    playerVolition,
+                    medium,
+                    listOf(RoguelikePlugin())
+                ),
+                config
+            )
+            val timeStream = TimeStream(reality, emptyList())
+            playerVolition.addActorTo(timeStream)
+            // Run the simulation
+            Thread({
+                while (true) {
+                    timeStream.play()
+                }
+            }).start()
         }
-    }).start()
 }
 
