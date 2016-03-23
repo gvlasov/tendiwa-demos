@@ -40,6 +40,9 @@ fun main(args: Array<String>) {
             width = 800
             height = 480
             resizable = false
+            foregroundFPS = 0
+            backgroundFPS = 0
+            vSyncEnabled = false
         }
     val worldSize = 320 by 320
     val medium = StimulusMedium()
