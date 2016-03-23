@@ -3,10 +3,11 @@ package org.tendiwa.frontend.gdx2d
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration
 import org.tendiwa.backend.existence.StimulusMedium
+import org.tendiwa.backend.existence.aspect
 import org.tendiwa.backend.modules.roguelike.aspects.Health
+import org.tendiwa.backend.modules.roguelike.aspects.Inventory
 import org.tendiwa.backend.modules.roguelike.aspects.PlayerVision
 import org.tendiwa.backend.modules.roguelike.aspects.Weight
-import org.tendiwa.backend.modules.roguelike.aspects.inventory
 import org.tendiwa.backend.modules.roguelike.things.Human
 import org.tendiwa.backend.modules.roguelike.things.WarAxe
 import org.tendiwa.backend.space.Reality
@@ -53,7 +54,7 @@ fun main(args: Array<String>) {
             listOf(
                 FloorPlane(worldSize),
                 WallPlane(worldSize),
-                RealThingPlane(worldSize, medium)
+                RealThingPlane(worldSize)
             )
         )
             .apply { // Setting up space
@@ -112,10 +113,10 @@ fun main(args: Array<String>) {
 
             val inventoryAxe1 = WarAxe()
             reality.addRealThing(inventoryAxe1)
-            playerCharacter.inventory.store(reality, inventoryAxe1)
+            playerCharacter.aspect<Inventory>().store(reality, inventoryAxe1)
             val inventoryAxe2 = WarAxe()
             reality.addRealThing(inventoryAxe2)
-            playerCharacter.inventory.store(reality, inventoryAxe2)
+            playerCharacter.aspect<Inventory>().store(reality, inventoryAxe2)
             // Setting up the frontend
             LwjglApplication(
                 TendiwaGame(
