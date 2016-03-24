@@ -19,7 +19,6 @@ import org.tendiwa.backend.space.floors.FloorPlane
 import org.tendiwa.backend.space.floors.FloorType
 import org.tendiwa.backend.space.floors.floors
 import org.tendiwa.backend.space.realThing.RealThingPlane
-import org.tendiwa.backend.space.realThing.realThings
 import org.tendiwa.backend.space.walls.WallPlane
 import org.tendiwa.backend.space.walls.WallType
 import org.tendiwa.backend.space.walls.walls
@@ -105,11 +104,9 @@ fun main(args: Array<String>) {
                     addAspect(PlayerVision())
                 }
             reality.addRealThing(playerCharacter)
-            reality.space.realThings.addRealThing(playerCharacter)
             val item = WarAxe()
             item.addAspect(Position(Voxel(9, 9, 0)))
             reality.addRealThing(item)
-            reality.space.realThings.addRealThing(item)
 
             val inventoryAxe1 = WarAxe()
             reality.addRealThing(inventoryAxe1)
