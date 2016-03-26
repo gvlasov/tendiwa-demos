@@ -47,7 +47,7 @@ fun main(args: Array<String>) {
     Reality(
         medium = medium,
         space = Space(
-            GridParallelepiped(Voxel(0, 0, 0), worldSize by 1)
+            GridParallelepiped(Voxel(0, 0, 0), worldSize by 3)
         )
             .apply { // Setting up space
                 val grassFloor = FloorType("grass", false)
