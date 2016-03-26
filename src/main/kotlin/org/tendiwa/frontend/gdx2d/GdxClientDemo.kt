@@ -2,6 +2,8 @@ package org.tendiwa.frontend.gdx2d
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration
+import org.tendiwa.backend.GridParallelepiped
+import org.tendiwa.backend.by
 import org.tendiwa.backend.existence.StimulusMedium
 import org.tendiwa.backend.existence.aspect
 import org.tendiwa.backend.modules.roguelike.aspects.Health
@@ -45,8 +47,7 @@ fun main(args: Array<String>) {
     Reality(
         medium = medium,
         space = Space(
-            GridRectangle(worldSize),
-            1
+            GridParallelepiped(Voxel(0, 0, 0), worldSize by 1)
         )
             .apply { // Setting up space
                 val grassFloor = FloorType("grass", false)
