@@ -15,13 +15,9 @@ import org.tendiwa.backend.space.Space
 import org.tendiwa.backend.space.Voxel
 import org.tendiwa.backend.space.aspects.Name
 import org.tendiwa.backend.space.aspects.Position
-import org.tendiwa.backend.space.floors.FloorPlane
+import org.tendiwa.backend.space.chunks.chunkWithVoxel
 import org.tendiwa.backend.space.floors.FloorType
-import org.tendiwa.backend.space.floors.floors
-import org.tendiwa.backend.space.realThing.RealThingPlane
-import org.tendiwa.backend.space.walls.WallPlane
 import org.tendiwa.backend.space.walls.WallType
-import org.tendiwa.backend.space.walls.walls
 import org.tendiwa.backend.time.TimeStream
 import org.tendiwa.frontend.gdx2d.plugin.roguelike.RoguelikePlugin
 import org.tendiwa.frontend.gdx2d.resources.images.ClasspathTextureBundle
@@ -50,11 +46,7 @@ fun main(args: Array<String>) {
         medium = medium,
         space = Space(
             GridRectangle(worldSize),
-            listOf(
-                FloorPlane(worldSize),
-                WallPlane(worldSize),
-                RealThingPlane(worldSize)
-            )
+            1
         )
             .apply { // Setting up space
                 val grassFloor = FloorType("grass", false)
@@ -83,10 +75,10 @@ fun main(args: Array<String>) {
                                 voidWall
                             }
                         floors
-                            .chunkWithTile(x, y)
+                            .chunkWithVoxel(x, y, 0)
                             .setFloor(x, y, floorType)
                         walls
-                            .chunkWithTile(x, y)
+                            .chunkWithVoxel(x, y, 0)
                             .setWall(x, y, wallType)
                     }
             }
