@@ -75,9 +75,12 @@ fun main(args: Array<String>) {
                             } else {
                                 voidWall
                             }
-                        floors
-                            .chunkWithVoxel(x, y, 0)
-                            .setFloor(x, y, floorType)
+                        (0 until hull.dimension.depth).forEach {
+                            depth ->
+                            floors
+                                .chunkWithVoxel(x, y, depth)
+                                .setFloor(x, y, floorType)
+                        }
                         walls
                             .chunkWithVoxel(x, y, 0)
                             .setWall(x, y, wallType)
