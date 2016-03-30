@@ -6,10 +6,7 @@ import org.tendiwa.backend.GridParallelepiped
 import org.tendiwa.backend.by
 import org.tendiwa.backend.existence.StimulusMedium
 import org.tendiwa.backend.existence.aspect
-import org.tendiwa.backend.modules.roguelike.aspects.Health
-import org.tendiwa.backend.modules.roguelike.aspects.Inventory
-import org.tendiwa.backend.modules.roguelike.aspects.PlayerVision
-import org.tendiwa.backend.modules.roguelike.aspects.Weight
+import org.tendiwa.backend.modules.roguelike.aspects.*
 import org.tendiwa.backend.modules.roguelike.things.Human
 import org.tendiwa.backend.modules.roguelike.things.WarAxe
 import org.tendiwa.backend.space.Reality
@@ -88,6 +85,7 @@ fun main(args: Array<String>) {
             }
     )
         .let { reality -> // Setting up reality
+            // Set up player character
             val playerVolition = PlayerVolition(reality)
             val playerCharacter =
                 Human(
@@ -103,6 +101,17 @@ fun main(args: Array<String>) {
             val item = WarAxe()
             item.addAspect(Position(Voxel(9, 9, 0)))
             reality.addRealThing(item)
+
+            // Set up the other nearby character
+            val wanderbear = Human(
+                Position(Voxel(10, 10, 0)),
+                Name("bear"),
+                Weight(550),
+                Health(100)
+            ).apply {
+                addAspect(WandererAI())
+            }
+            reality.addRealThing(wanderbear)
 
             val inventoryAxe1 = WarAxe()
             reality.addRealThing(inventoryAxe1)
@@ -133,6 +142,7 @@ fun main(args: Array<String>) {
             )
             val timeStream = TimeStream(reality, emptyList())
             playerVolition.addActorTo(timeStream)
+            timeStream.addActor(wanderbear.aspect<WandererAI>())
             // Run the simulation
             Thread({
                 while (true) {
