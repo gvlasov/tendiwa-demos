@@ -17,11 +17,11 @@ import org.tendiwa.backend.space.aspects.Position
 import org.tendiwa.backend.space.chunks.chunkWithVoxel
 import org.tendiwa.backend.space.floors.FloorType
 import org.tendiwa.backend.space.walls.WallType
-import org.tendiwa.backend.time.TimeStream
 import org.tendiwa.frontend.gdx2d.plugin.roguelike.RoguelikePlugin
 import org.tendiwa.frontend.gdx2d.resources.images.ClasspathTextureBundle
 import org.tendiwa.frontend.gdx2d.resources.images.TextureAtlasCache
 import org.tendiwa.frontend.generic.PlayerVolition
+import org.tendiwa.frontend.generic.TimeBubbleOwnership
 import org.tendiwa.plane.grid.constructors.GridRectangle
 import org.tendiwa.plane.grid.dimensions.by
 import org.tendiwa.plane.grid.masks.GridMask
@@ -50,7 +50,7 @@ fun main(args: Array<String>) {
                 val grassFloor = FloorType("grass", false)
                 val stoneFloor = FloorType("stone", false)
                 val stoneWall = WallType("wall_gray_stone")
-                val voidWall = WallType.Companion.void
+                val voidWall = WallType.void
                 val mask =
                     GridMask {
                         x, y ->
@@ -90,13 +90,14 @@ fun main(args: Array<String>) {
             val playerCharacter =
                 Human(
                     Position(Voxel(6, 7, 0)),
-                    Name("bear"),
+                    Name("carrotGolem"),
                     Weight(550),
                     Health(100)
                 ).apply {
                     addAspect(playerVolition)
                     addAspect(PlayerVision())
                 }
+            playerCharacter.removeAspect(HumanoidIntelligence::class.java)
             reality.addRealThing(playerCharacter)
             val item = WarAxe()
             item.addAspect(Position(Voxel(9, 9, 0)))
@@ -110,6 +111,7 @@ fun main(args: Array<String>) {
                 Health(100)
             ).apply {
                 addAspect(WandererAI())
+                removeAspect(HumanoidIntelligence::class.java)
             }
             reality.addRealThing(wanderbear)
 
@@ -140,15 +142,13 @@ fun main(args: Array<String>) {
                 ),
                 config
             )
-            val timeStream = TimeStream(reality, emptyList())
-            playerVolition.addActorTo(timeStream)
-            timeStream.addActor(wanderbear.aspect<WandererAI>())
             // Run the simulation
-            Thread({
-                while (true) {
-                    timeStream.play()
-                }
-            }).start()
+            val bubbleOwnership = TimeBubbleOwnership()
+            reality.addAspect(playerCharacter, bubbleOwnership)
+            Thread(
+                bubbleOwnership.runnable(),
+                "TimeStream scheduling"
+            ).start()
         }
 }
 
