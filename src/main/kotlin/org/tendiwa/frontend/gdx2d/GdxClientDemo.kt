@@ -16,6 +16,8 @@ import org.tendiwa.backend.space.aspects.Name
 import org.tendiwa.backend.space.aspects.Position
 import org.tendiwa.backend.space.chunks.chunkWithVoxel
 import org.tendiwa.backend.space.floors.FloorType
+import org.tendiwa.backend.space.lighting.Luminary
+import org.tendiwa.backend.space.lighting.Luminosity
 import org.tendiwa.backend.space.walls.WallType
 import org.tendiwa.frontend.gdx2d.plugin.roguelike.RoguelikePlugin
 import org.tendiwa.frontend.gdx2d.resources.images.ClasspathTextureBundle
@@ -44,7 +46,12 @@ fun main(args: Array<String>) {
     Reality(
         medium = medium,
         space = Space(
-            GridParallelepiped(Voxel(0, 0, 0), worldSize by 3)
+            GridParallelepiped(Voxel(0, 0, 0), worldSize by 3),
+            listOf(true),
+            object : Luminary {
+                override fun luminosity(timeOfDay: Int): Luminosity =
+                    Luminosity.LIT
+            }
         )
             .apply { // Setting up space
                 val grassFloor = FloorType("grass", false)
