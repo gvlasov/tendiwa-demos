@@ -20,6 +20,7 @@ import org.tendiwa.backend.space.Voxel
 import org.tendiwa.backend.space.aspects.Name
 import org.tendiwa.backend.space.aspects.Position
 import org.tendiwa.backend.space.aspects.SimulationBubbleOwnership
+import org.tendiwa.backend.space.chunks.ChunkShape
 import org.tendiwa.backend.space.chunks.chunkWithVoxel
 import org.tendiwa.backend.space.floors.FloorType
 import org.tendiwa.backend.space.lighting.ConstantLuminary
@@ -34,6 +35,7 @@ import org.tendiwa.frontend.generic.PlayerVolition
 import org.tendiwa.plane.grid.constructors.GridRectangle
 import org.tendiwa.plane.grid.dimensions.by
 import org.tendiwa.plane.grid.masks.GridMask
+import org.tendiwa.plane.grid.masks.StringGridMask
 import org.tendiwa.plane.grid.masks.boundedBy
 import java.nio.file.Paths
 
@@ -157,7 +159,20 @@ fun main(args: Array<String>) {
             )
             // Run the simulation
             val bubble = reality.simulation.createBubble()
-            val bubbleOwnership = SimulationBubbleOwnership(bubble)
+            val bubbleOwnership = SimulationBubbleOwnership(
+                bubble,
+                ChunkShape(
+                    listOf(
+                        StringGridMask(
+                            ".###.",
+                            "#####",
+                            "#####",
+                            "#####",
+                            ".###."
+                        )
+                    )
+                )
+            )
             reality.addAspect(playerCharacter, bubbleOwnership)
             Thread(
                 bubble.timeStream.runnable(),
