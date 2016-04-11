@@ -6,7 +6,12 @@ import org.tendiwa.backend.GridParallelepiped
 import org.tendiwa.backend.by
 import org.tendiwa.backend.existence.StimulusMedium
 import org.tendiwa.backend.existence.aspect
-import org.tendiwa.backend.modules.roguelike.aspects.*
+import org.tendiwa.backend.modules.roguelike.aspects.Health
+import org.tendiwa.backend.modules.roguelike.aspects.HumanoidIntelligence
+import org.tendiwa.backend.modules.roguelike.aspects.Inventory
+import org.tendiwa.backend.modules.roguelike.aspects.PlayerVision
+import org.tendiwa.backend.modules.roguelike.aspects.WandererAI
+import org.tendiwa.backend.modules.roguelike.aspects.Weight
 import org.tendiwa.backend.modules.roguelike.things.Human
 import org.tendiwa.backend.modules.roguelike.things.WarAxe
 import org.tendiwa.backend.space.Reality
@@ -14,16 +19,18 @@ import org.tendiwa.backend.space.Space
 import org.tendiwa.backend.space.Voxel
 import org.tendiwa.backend.space.aspects.Name
 import org.tendiwa.backend.space.aspects.Position
+import org.tendiwa.backend.space.aspects.SimulationBubbleOwnership
 import org.tendiwa.backend.space.chunks.chunkWithVoxel
 import org.tendiwa.backend.space.floors.FloorType
-import org.tendiwa.backend.space.lighting.Luminary
+import org.tendiwa.backend.space.lighting.ConstantLuminary
+import org.tendiwa.backend.space.lighting.GlobalLighting
 import org.tendiwa.backend.space.lighting.Luminosity
 import org.tendiwa.backend.space.walls.WallType
+import org.tendiwa.backend.time.runnable
 import org.tendiwa.frontend.gdx2d.plugin.roguelike.RoguelikePlugin
 import org.tendiwa.frontend.gdx2d.resources.images.ClasspathTextureBundle
 import org.tendiwa.frontend.gdx2d.resources.images.TextureAtlasCache
 import org.tendiwa.frontend.generic.PlayerVolition
-import org.tendiwa.frontend.generic.TimeBubbleOwnership
 import org.tendiwa.plane.grid.constructors.GridRectangle
 import org.tendiwa.plane.grid.dimensions.by
 import org.tendiwa.plane.grid.masks.GridMask
@@ -46,12 +53,7 @@ fun main(args: Array<String>) {
     Reality(
         medium = medium,
         space = Space(
-            GridParallelepiped(Voxel(0, 0, 0), worldSize by 3),
-            listOf(true),
-            object : Luminary {
-                override fun luminosity(timeOfDay: Int): Luminosity =
-                    Luminosity.LIT
-            }
+            GridParallelepiped(Voxel(0, 0, 0), worldSize by 3)
         )
             .apply { // Setting up space
                 val grassFloor = FloorType("grass", false)
@@ -89,7 +91,11 @@ fun main(args: Array<String>) {
                             .chunkWithVoxel(x, y, 0)
                             .setWall(x, y, wallType)
                     }
-            }
+            },
+        globalLighting = GlobalLighting(
+            ConstantLuminary(Luminosity.LIT),
+            listOf(true)
+        )
     )
         .let { reality -> // Setting up reality
             // Set up player character
@@ -150,11 +156,12 @@ fun main(args: Array<String>) {
                 config
             )
             // Run the simulation
-            val bubbleOwnership = TimeBubbleOwnership()
+            val bubble = reality.simulation.createBubble()
+            val bubbleOwnership = SimulationBubbleOwnership(bubble)
             reality.addAspect(playerCharacter, bubbleOwnership)
             Thread(
-                bubbleOwnership.runnable(),
-                "TimeStream scheduling"
+                bubble.timeStream.runnable(),
+                "Playing TimeStream"
             ).start()
         }
 }
