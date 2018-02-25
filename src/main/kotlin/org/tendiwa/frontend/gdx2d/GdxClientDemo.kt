@@ -24,7 +24,7 @@ import org.tendiwa.backend.space.chunks.ChunkShape
 import org.tendiwa.backend.space.chunks.chunkWithVoxel
 import org.tendiwa.backend.space.floors.FloorType
 import org.tendiwa.backend.space.lighting.ConstantLuminary
-import org.tendiwa.backend.space.lighting.GlobalLighting
+import org.tendiwa.backend.space.lighting.AmbientLighting
 import org.tendiwa.backend.space.lighting.Luminosity
 import org.tendiwa.backend.space.walls.WallType
 import org.tendiwa.backend.time.runnable
@@ -94,7 +94,7 @@ fun main(args: Array<String>) {
                             .setWall(x, y, wallType)
                     }
             },
-        globalLighting = GlobalLighting(
+        ambientLighting = AmbientLighting(
             ConstantLuminary(Luminosity.LIT),
             listOf(true)
         )
